@@ -4,7 +4,7 @@
 
 ## ✅ Literature Review
 
-In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of investor sentiment in stock price predictions, signaling a shift towards more dynamic analytical models [2][3]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4]. This proposal advocates for the adoption of advanced analytics and machine learning to refine asset allocation, enhance risk management, and uncover deeper market insights. By leveraging comprehensive data analysis, our strategy aims to surpass traditional methods, offering a sophisticated, data-driven approach to investment portfolio management that aligns with contemporary market complexities.
+In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of investor sentiment in stock price predictions, signaling a shift towards more dynamic analytical models [2]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5]. This proposal advocates for the adoption of advanced analytics and machine learning to refine asset allocation, enhance risk management, and uncover deeper market insights. By leveraging comprehensive data analysis, our strategy aims to surpass traditional methods, offering a sophisticated, data-driven approach to investment portfolio management that aligns with contemporary market complexities.
 
 ## ✅ Dataset
 
@@ -52,11 +52,13 @@ Find out the most accurate and efficient model for portfolio prediction based on
 ## ✅Expected Results
 We expect to find the best model among others for portfolio optimization.
 
-## Reference
-[1]
-[2]
-[3]
-[4]
+## References
+
+[1] J. C. Van Horne and G. G. C. Parker, "The Random-Walk Theory: An Empirical Test," *Financial Analysts Journal*, vol. 23, no. 6, pp. 87–92, 1967.
+[2] M. Baker and J. Wurgler, "Investor Sentiment in the Stock Market," *Journal of Economic Perspectives*, vol. 21, no. 2, pp. 129–151, Apr. 2007. [DOI: 10.1257/jep.21.2.129](https://doi.org/10.1257/jep.21.2.129) <br>
+[3] M. Lim, "History of AI Winters," *Actuaries Digital*. Accessed: Feb. 13, 2024. [Online]. Available: [https://www.actuaries.digital/2018/09/05/history-of-ai-winters/](https://www.actuaries.digital/2018/09/05/history-of-ai-winters/)<br>
+[4] V. S. Rajput and S. M. Dubey, "Stock market sentiment analysis based on machine learning," in *2016 2nd International Conference on Next Generation Computing Technologies (NGCT)*, Oct. 2016, pp. 506–510. [DOI: 10.1109/NGCT.2016.7877468](https://doi.org/10.1109/NGCT.2016.7877468)<br>
+[5] J. Bollen, H. Mao, and X. Zeng, "Twitter mood predicts the stock market," *Journal of Computational Science*, vol. 2, no. 1, pp. 1–8, Mar. 2011. [DOI: 10.1016/j.jocs.2010.12.007](https://doi.org/10.1016/j.jocs.2010.12.007)
 
 
 
