@@ -40,17 +40,23 @@ A crucial component of finance is managing investment portfolios, which is essen
 3) SOM (Self-organizing Maps)
 
 # IV. (Potential) Results and Discussion
-##✅3+ Quantitative Metrics
+## ✅3+ Quantitative Metrics
 1)	Accuracy
 2)	Epoch
 3)	Runtime
 4)	PCA
 
-##✅Project Goals
+## ✅Project Goals
 Find out the most accurate and efficient model for portfolio prediction based on sentiment analysis.
 
-##✅Expected Results
+## ✅Expected Results
 We expect to find the best model among others for portfolio optimization.
+
+## Reference
+[1]
+[2]
+[3]
+[4]
 
 
 
