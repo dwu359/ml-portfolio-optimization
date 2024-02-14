@@ -1,1 +1,5 @@
 ## Project
+
+1. Introduction
+1-1 Literature Review
+In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting[1]. Research has highlighted the importance of investor sentiment in stock price predictions, signaling a shift towards more dynamic analytical models[2][3]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources[3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models[4]. This proposal advocates for the adoption of advanced analytics and machine learning to refine asset allocation, enhance risk management, and uncover deeper market insights. By leveraging comprehensive data analysis, our strategy aims to surpass traditional methods, offering a sophisticated, data-driven approach to investment portfolio management that aligns with contemporary market complexities.
