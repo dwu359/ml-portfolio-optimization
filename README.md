@@ -1,6 +1,9 @@
-## Project
+## CS7641 Project - Group #11
+# Predicting Markets with Investor Sentiment
 
-# Introduction
+
+
+# I. Introduction
 
 ## ✅ Literature Review
 
