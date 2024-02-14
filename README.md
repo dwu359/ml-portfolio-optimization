@@ -19,3 +19,38 @@ While traditional models predominantly rely on financial data, the integration o
 
 ## ✅ Motivation:
 A crucial component of finance is managing investment portfolios, which is essential for maximizing profits and reducing risks. Conventional techniques frequently rely on human judgment, which is biased and inefficient. Using machine learning (ML) techniques offers a strong chance to improve decision-making processes by delivering insights based on sentiment data and revealing new directions for portfolio optimization.
+
+# III. Method
+
+## ✅ 3+ Data Preprocessing Methods:
+- Anaylze and quantize sentiment data
+- Interpolating missing data 
+- Removing Outliers
+- data format
+
+## ✅ 3+ ML Algorithms/Models Identified:
+**Supervised**
+1) VAR (Vector Autoregression)
+2) ARIMA (Autoregressive Integrated Moving Average)
+3) LSTM
+
+**Unsupervised**
+1) K-Means Clustering
+2) DBSCAN
+3) SOM (Self-organizing Maps)
+
+# IV. (Potential) Results and Discussion
+##✅3+ Quantitative Metrics
+1)	Accuracy
+2)	Epoch
+3)	Runtime
+4)	PCA
+
+##✅Project Goals
+Find out the most accurate and efficient model for portfolio prediction based on sentiment analysis.
+
+##✅Expected Results
+We expect to find the best model among others for portfolio optimization.
+
+
+
