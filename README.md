@@ -31,7 +31,7 @@ A crucial component of finance is managing investment portfolios, which is essen
 - Anaylze and quantize sentiment data
 - Interpolating missing data 
 - Removing Outliers
-- data format
+- Data format standardization
 
 ## ✅ 3+ ML Algorithms/Models Identified:
 **Supervised**
@@ -47,15 +47,15 @@ A crucial component of finance is managing investment portfolios, which is essen
 # IV. (Potential) Results and Discussion
 ## ✅3+ Quantitative Metrics
 1)	Accuracy
-2)	Epoch
+2)	R-squared (R²)
 3)	Runtime
 4)	PCA
 
 ## ✅Project Goals
-Find out the most accurate and efficient model for portfolio prediction based on sentiment analysis.
+Maximize accuracy and efficiency by identifying a model with high predictive accuracy while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of sentiment analysis and machine learning techniques.
 
 ## ✅Expected Results
-We expect to find the best model among others for portfolio optimization.
+We expect to find the best model among others for portfolio optimization by exploring the impact of sentiment trends on market movements.
 
 ## References
 
