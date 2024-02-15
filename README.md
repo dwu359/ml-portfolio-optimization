@@ -66,4 +66,25 @@ We expect to find the best model among others for portfolio optimization by expl
 [5] J. Bollen, H. Mao, and X. Zeng, "Twitter mood predicts the stock market," *Journal of Computational Science*, vol. 2, no. 1, pp. 1–8, Mar. 2011. [DOI: 10.1016/j.jocs.2010.12.007](https://doi.org/10.1016/j.jocs.2010.12.007)
 
 
+## ✅Gantt Chart
+
+
+
+## ✅Proposal Contribution Table
+
+| Name     | Proposal Contributions                                     |
+|----------|-------------------------------------------------------------|
+| Member1  | - Contribution         |
+|          | - Contribution.       |
+| Member2  | - Contribution.        |
+|          | - Contribution.         |
+| Member3  | - Contribution.            |
+|          | - Contribution.     |
+| Member4  | - Contribution.|
+|          | - Contribution.    |
+| Member5  | - Contribution.|
+|          | - Contribution.    |
+
+
+
 
