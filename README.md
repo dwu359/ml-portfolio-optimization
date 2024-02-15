@@ -11,7 +11,9 @@ In the rapidly evolving financial markets, traditional investment strategies lik
 
 ## ✅ Dataset
 
-The dataset comprises daily stock price data obtained from Yahoo Finance via the yfinance API, encompassing a subset of stocks from the S&P 500 index since January 2007. Additionally, money market rates data from the Federal Reserve (FRED) accessed through the quandl API enriches the dataset. Featured stocks include AAPL, GOOG, MSFT, AMZN, INTC, AMD, NVDA, F, TSLA, JPM, MS, and VOO, spanning diverse sectors such as technology, microelectronics, engineering, banking, and finance. The dataset includes features such as Date, Open, High, Low, Close, Adj Close, and Volume.
+- Stock Tweets: This dataset containing dates, ticker symbols, and parsed headline text, will be utilized for sentiment analysis and potential prediction.[Link](https://www.kaggle.com/datasets/equinxx/stock-tweets-for-sentiment-analysis-and-prediction)
+- News Headlines (RSS Feeds): Over 80,000 tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
+- Daily Stock Prices (Yahoo Finance): Daily price data for a subset of S&P 500 stocks since January 2007 will be retrieved via the yfinance API.
 
 # II. Problem Statement
 
