@@ -87,7 +87,7 @@ We expect to find the best model among others for portfolio optimization by expl
 |----------|-------------------------------------------------------------|
 | Member1  | - Contribution         |
 |          | - Contribution.       |
-| Jungyoun Kwak  | - Found datasets        |
+| Jungyoun Kwak  | - Found datasets related economic index        |
 |          | - Proposed method, results, and discussions.         |
 | Member3  | - Contribution.            |
 |          | - Contribution.     |
