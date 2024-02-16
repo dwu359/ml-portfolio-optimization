@@ -87,8 +87,8 @@ We expect to find the best model among others for portfolio optimization by expl
 |----------|-------------------------------------------------------------|
 | Member1  | - Contribution         |
 |          | - Contribution.       |
-| Member2  | - Contribution.        |
-|          | - Contribution.         |
+| Jungyoun Kwak  | - Found datasets        |
+|          | - Proposed method, results, and discussions.         |
 | Member3  | - Contribution.            |
 |          | - Contribution.     |
 | Member4  | - Contribution.|
