@@ -9,7 +9,11 @@
 In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of investor sentiment in stock price predictions, signaling a shift towards more dynamic analytical models [2]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5]. This proposal advocates for the adoption of advanced analytics and machine learning to refine asset allocation, enhance risk management, and uncover deeper market insights. By leveraging comprehensive data analysis, our strategy aims to surpass traditional methods, offering a sophisticated, data-driven approach to investment portfolio management that aligns with contemporary market complexities.
 
 ## Dataset
-
+- Federal Interest rate [Link](https://fred.stlouisfed.org/series/DFF)
+- GDP (gross domestic product) [Link](https://fred.stlouisfed.org/series/GDP)
+- CPI (consumer price index) [Link](https://fred.stlouisfed.org/series/CPIAUCSL)
+- Personal saving rate [Link](https://fred.stlouisfed.org/series/PSAVERT)
+- Unemployed rate [Link](https://fred.stlouisfed.org/series/UNRATE)
 - Stock Tweets: This dataset containing dates, ticker symbols, and parsed headline text, will be utilized for sentiment analysis and potential prediction.[Link](https://www.kaggle.com/datasets/equinxx/stock-tweets-for-sentiment-analysis-and-prediction)
 - News Headlines (RSS Feeds): Over 80,000 tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
 - Daily Stock Prices (Yahoo Finance): Daily price data for a subset of S&P 500 stocks since January 2007 will be retrieved via the yfinance API.
