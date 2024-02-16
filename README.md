@@ -68,6 +68,9 @@ We expect to find the best model among others for portfolio optimization by expl
 
 ## ✅Gantt Chart
 
+![image](https://github.com/dwu359/ml-portfolio-optimization/assets/141580034/7bb9d796-34e8-4189-9658-e6734138f8b7)
+
+
 
 
 ## ✅Proposal Contribution Table
