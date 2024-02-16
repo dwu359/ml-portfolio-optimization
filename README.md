@@ -51,20 +51,20 @@ We use stock price, interest rate, GDP, CPI, savings, unemployment rate, and sto
 
 # IV. (Potential) Results and Discussion
 ## 3+ Quantitative Metrics
-1) Sharpe Ratio
+1) Sharpe Ratio (Measure of risk-adjusted return)
 2) Mean Daily Returns
 3) Std Deviation of Daily Returns
 4) Beta (Sensitivity to Market Returns)
 5) Alpha (Excess returns over market)
-6) Treynor Ratio
-7) Sortino Ratio
-
+6) Treynor Ratio (Like Sharpe Ratio but focuses on systematic risk)
+7) Sortino Ratio (Like Sharpe and Treynor, but focuses on downside risk)
+8) Performance Metrics (Execution time, Memory footprint)
 
 ## Project Goals
 Maximize accuracy and efficiency by identifying a model with high predictive accuracy while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of sentiment analysis and machine learning techniques.
 
 ## Expected Results
-We expect to find the best model among others for portfolio optimization by exploring the impact of sentiment trends on market movements.
+We expect to find the best model among others for portfolio optimization by exploring the impact of sentiment trends and macroeconomic indicators on market movements.
 
 ## References
 
