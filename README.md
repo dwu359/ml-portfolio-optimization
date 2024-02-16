@@ -2,14 +2,13 @@
 # Predicting Markets with Social Media Sentiment
 
 
-
 # I. Introduction
 
-## ✅ Literature Review
+## Literature Review
 
 In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of investor sentiment in stock price predictions, signaling a shift towards more dynamic analytical models [2]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5]. This proposal advocates for the adoption of advanced analytics and machine learning to refine asset allocation, enhance risk management, and uncover deeper market insights. By leveraging comprehensive data analysis, our strategy aims to surpass traditional methods, offering a sophisticated, data-driven approach to investment portfolio management that aligns with contemporary market complexities.
 
-## ✅ Dataset
+## Dataset
 
 - Stock Tweets: This dataset containing dates, ticker symbols, and parsed headline text, will be utilized for sentiment analysis and potential prediction.[Link](https://www.kaggle.com/datasets/equinxx/stock-tweets-for-sentiment-analysis-and-prediction)
 - News Headlines (RSS Feeds): Over 80,000 tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
@@ -17,23 +16,23 @@ In the rapidly evolving financial markets, traditional investment strategies lik
 
 # II. Problem Statement
 
-## ✅ Problem
+## Problem
 
 While traditional models predominantly rely on financial data, the integration of alternative data streams offers the potential to uncover valuable insights and improve the accuracy of stock price prediction using media sentiment. This project aims to develop a comprehensive approach to portfolio management that takes into account a wider range of market dynamics and improves decision-making processes by investigating the synergies between financial and non-financial data sources.
 
 
-## ✅ Motivation:
+## Motivation:
 A crucial component of finance is managing investment portfolios, which is essential for maximizing profits and reducing risks. Conventional techniques frequently rely on human judgment, which is biased and inefficient. Using machine learning (ML) techniques offers a strong chance to improve decision-making processes by delivering insights based on sentiment data and revealing new directions for portfolio optimization.
 
 # III. Method
 
-## ✅ 3+ Data Preprocessing Methods:
+## 3+ Data Preprocessing Methods:
 - Anaylze and quantize sentiment data
 - Interpolating missing data 
 - Removing Outliers
 - Data format standardization
 
-## ✅ 3+ ML Algorithms/Models Identified:
+## 3+ ML Algorithms/Models Identified:
 **Supervised**
 1) VAR (Vector Autoregression)
 2) ARIMA (Autoregressive Integrated Moving Average)
@@ -45,16 +44,20 @@ A crucial component of finance is managing investment portfolios, which is essen
 3) SOM (Self-organizing Maps)
 
 # IV. (Potential) Results and Discussion
-## ✅3+ Quantitative Metrics
-1)	Accuracy
-2)	R-squared (R²)
-3)	Runtime
-4)	PCA
+## 3+ Quantitative Metrics
+1) Sharpe Ratio
+2) Mean Daily Returns
+3) Std Deviation of Daily Returns
+4) Beta (Sensitivity to Market Returns)
+5) Alpha (Excess returns over market)
+6) Treynor Ratio
+7) Sortino Ratio
 
-## ✅Project Goals
+
+## Project Goals
 Maximize accuracy and efficiency by identifying a model with high predictive accuracy while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of sentiment analysis and machine learning techniques.
 
-## ✅Expected Results
+## Expected Results
 We expect to find the best model among others for portfolio optimization by exploring the impact of sentiment trends on market movements.
 
 ## References
@@ -66,14 +69,14 @@ We expect to find the best model among others for portfolio optimization by expl
 [5] J. Bollen, H. Mao, and X. Zeng, "Twitter mood predicts the stock market," *Journal of Computational Science*, vol. 2, no. 1, pp. 1–8, Mar. 2011. [DOI: 10.1016/j.jocs.2010.12.007](https://doi.org/10.1016/j.jocs.2010.12.007)
 
 
-## ✅Gantt Chart
+## Gantt Chart
 
 ![image](https://github.com/dwu359/ml-portfolio-optimization/assets/141580034/7bb9d796-34e8-4189-9658-e6734138f8b7)
 
 
 
 
-## ✅Proposal Contribution Table
+## Proposal Contribution Table
 
 | Name     | Proposal Contributions                                     |
 |----------|-------------------------------------------------------------|
