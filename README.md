@@ -1,5 +1,5 @@
 ## CS7641 Project - Group #11
-# Predicting Markets with Investor Sentiment
+# Predicting Markets with Social Media Sentiment
 
 
 
