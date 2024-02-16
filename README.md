@@ -31,14 +31,14 @@ A crucial component of finance is managing investment portfolios, which is essen
 # III. Method
 
 ## 3+ Data Preprocessing Methods:
-Collected datasets have different formats and intervals of records. We will aim to preprocess data to prevent overfitting particular datasets. The examples of preprocessing methodologies are listed below:
+Collected datasets have different formats and intervals of records. We will aim to preprocess data to prevent overfitting particular datasets. The examples of preprocessing methodologies are listed below:<br>
 - Interpolating missing data 
 - Removing Outliers
 - Data format standardization
 - Anaylze and quantize sentiment data
 
 ## 3+ ML Algorithms/Models Identified:
-We use stock price, interest rate, GDP, CPI, savings, unemployment rate, and stock sweets in time series. Therefore, we will utilize the supervised/unsupervised models specifically useful for the time series dataset as listed below:
+We use stock price, interest rate, GDP, CPI, savings, unemployment rate, and stock sweets in time series. Therefore, we will utilize the supervised/unsupervised models specifically useful for the time series dataset as listed below:<br>
 **Supervised**
 1) VAR (Vector Autoregression)
 2) ARIMA (Autoregressive Integrated Moving Average)
@@ -77,7 +77,8 @@ We expect to find the best model among others for portfolio optimization by expl
 
 ## Gantt Chart
 
-![image](https://github.com/dwu359/ml-portfolio-optimization/assets/141580034/09687c0f-bba4-46c3-be7b-384f57292d0e)
+
+<img src= https://github.com/dwu359/ml-portfolio-optimization/assets/141580034/acefaeeb-ce37-45b6-a6d9-ca925db180fd, width = "600">
 
 
 
