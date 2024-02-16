@@ -1,12 +1,12 @@
 ## CS7641 Project - Group #11
-# Predicting Markets with Social Media Sentiment
+# ML based Portfolio Management with Macro-Financial Indicators
 
 
 # I. Introduction
 
 ## Literature Review
 
-In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of investor sentiment in stock price predictions, signaling a shift towards more dynamic analytical models [2]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5]. This proposal advocates for the adoption of advanced analytics and machine learning to refine asset allocation, enhance risk management, and uncover deeper market insights. By leveraging comprehensive data analysis, our strategy aims to surpass traditional methods, offering a sophisticated, data-driven approach to investment portfolio management that aligns with contemporary market complexities.
+In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of macroeconomic factors significantly influence stock prices [2]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5].
 
 ## Dataset
 - Federal Interest rate [Link](https://fred.stlouisfed.org/series/DFF)
@@ -22,11 +22,11 @@ In the rapidly evolving financial markets, traditional investment strategies lik
 
 ## Problem
 
-While traditional models predominantly rely on financial data, the integration of alternative data streams offers the potential to uncover valuable insights and improve the accuracy of stock price prediction using media sentiment. This project aims to develop a comprehensive approach to portfolio management that takes into account a wider range of market dynamics and improves decision-making processes by investigating the synergies between financial and non-financial data sources.
+The efficacy of traditional portfolio management techniques is frequently compromised by their sole dependence on historical stock prices and basic financial indicators. These models fail to account for the broader economic context and sentiment analysis, which are crucial factors driving stock market movements. These models may offer inadequate portfolio allocations, which might result in lost opportunities or higher risk exposure. Therefore, in order to achieve near-perfect forecasts for portfolio management, it is imperative to build more sophisticated frameworks for portfolio optimization that make use of a wide range of data sources.
 
 
 ## Motivation:
-A crucial component of finance is managing investment portfolios, which is essential for maximizing profits and reducing risks. Conventional techniques frequently rely on human judgment, which is biased and inefficient. Using machine learning (ML) techniques offers a strong chance to improve decision-making processes by delivering insights based on sentiment data and revealing new directions for portfolio optimization.
+The motivation behind this project stems from the shortcomings of existing portfolio optimization approaches and the potential for ML models to address these challenges effectively. By integrating macroeconomic indicators and possibly sentiment analysis into portfolio optimization, we aim to enhance the accuracy and robustness of investment strategies. This not only allows for better risk management and return maximization but also provides investors with valuable insights into market dynamics. Ultimately, our goal is to bridge the gap between traditional finance and cutting-edge ML techniques to empower investors with superior portfolio management capabilities.
 
 # III. Method
 
@@ -35,6 +35,7 @@ Collected datasets have different formats and intervals of records. We will aim 
 - Interpolating missing data 
 - Removing Outliers
 - Data format standardization
+- Merge features from multiple datasets
 - Anaylze and quantize sentiment data
 
 ## 3+ ML Algorithms/Models Identified:
@@ -69,7 +70,7 @@ We expect to find the best model among others for portfolio optimization by expl
 ## References
 
 [1] J. C. Van Horne and G. G. C. Parker, "The Random-Walk Theory: An Empirical Test," *Financial Analysts Journal*, vol. 23, no. 6, pp. 87–92, 1967. <br>
-[2] M. Baker and J. Wurgler, "Investor Sentiment in the Stock Market," *Journal of Economic Perspectives*, vol. 21, no. 2, pp. 129–151, Apr. 2007. [DOI: 10.1257/jep.21.2.129](https://doi.org/10.1257/jep.21.2.129) <br>
+[2] L. Lania, R. Collage and M. Vereycken, "The Impact of Uncertainty in Macroeconomic Variables on Stock Returns in the USA," *Journal of Risk Financial Manag. *, vol. 16, no. 3, pp. 189, 2023. [DOI: 10.3390/jrfm16030189](https://doi.org/10.3390/jrfm16030189) <br>
 [3] M. Lim, "History of AI Winters," *Actuaries Digital*. Accessed: Feb. 13, 2024. [Online]. Available: [https://www.actuaries.digital/2018/09/05/history-of-ai-winters/](https://www.actuaries.digital/2018/09/05/history-of-ai-winters/)<br>
 [4] V. S. Rajput and S. M. Dubey, "Stock market sentiment analysis based on machine learning," in *2016 2nd International Conference on Next Generation Computing Technologies (NGCT)*, Oct. 2016, pp. 506–510. [DOI: 10.1109/NGCT.2016.7877468](https://doi.org/10.1109/NGCT.2016.7877468)<br>
 [5] J. Bollen, H. Mao, and X. Zeng, "Twitter mood predicts the stock market," *Journal of Computational Science*, vol. 2, no. 1, pp. 1–8, Mar. 2011. [DOI: 10.1016/j.jocs.2010.12.007](https://doi.org/10.1016/j.jocs.2010.12.007)
@@ -88,8 +89,8 @@ We expect to find the best model among others for portfolio optimization by expl
 
 | Name     | Proposal Contributions                                     |
 |----------|-------------------------------------------------------------|
-| Member1  | - Contribution         |
-|          | - Contribution.       |
+| Sai      | - Worked on the Introduction and Background        |
+|          | - Found traditional time-series dataset.       |
 | Jungyoun Kwak  | - Found datasets related economic index        |
 |          | - Proposed method, results, and discussions.         |
 | Member3  | - Contribution.            |
