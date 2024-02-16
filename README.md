@@ -13,7 +13,7 @@ In the rapidly evolving financial markets, traditional investment strategies lik
 - GDP (gross domestic product) [Link](https://fred.stlouisfed.org/series/GDP)
 - CPI (consumer price index) [Link](https://fred.stlouisfed.org/series/CPIAUCSL)
 - Personal saving rate [Link](https://fred.stlouisfed.org/series/PSAVERT)
-- Unemployed rate [Link](https://fred.stlouisfed.org/series/UNRATE)
+- Unemployment rate [Link](https://fred.stlouisfed.org/series/UNRATE)
 - Stock Tweets: This dataset containing dates, ticker symbols, and parsed headline text, will be utilized for sentiment analysis and potential prediction.[Link](https://www.kaggle.com/datasets/equinxx/stock-tweets-for-sentiment-analysis-and-prediction)
 - News Headlines (RSS Feeds): Over 80,000 tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
 - Daily Stock Prices (Yahoo Finance): Daily price data for a subset of S&P 500 stocks since January 2007 will be retrieved via the yfinance API.
@@ -31,12 +31,14 @@ A crucial component of finance is managing investment portfolios, which is essen
 # III. Method
 
 ## 3+ Data Preprocessing Methods:
-- Anaylze and quantize sentiment data
+Collected datasets have different formats and intervals of records. We will aim to preprocess data to prevent overfitting particular datasets. The examples of preprocessing methodologies are listed below:
 - Interpolating missing data 
 - Removing Outliers
 - Data format standardization
+- Anaylze and quantize sentiment data
 
 ## 3+ ML Algorithms/Models Identified:
+We use stock price, interest rate, GDP, CPI, savings, unemployment rate, and stock sweets in time series. Therefore, we will utilize the supervised/unsupervised models specifically useful for the time series dataset as listed below:
 **Supervised**
 1) VAR (Vector Autoregression)
 2) ARIMA (Autoregressive Integrated Moving Average)
