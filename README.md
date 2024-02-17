@@ -94,8 +94,8 @@ We expect to find the best model among others for portfolio optimization by expl
 |          | - Contribution.     |
 | Member4  | - Contribution.|
 |          | - Contribution.    |
-| Member5  | - Contribution.|
-|          | - Contribution.    |
+| Daniel Wu  | - Proofread and revised proposal |
+|          | - Added some metrics    |
 
 
 
