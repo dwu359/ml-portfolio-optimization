@@ -6,7 +6,7 @@
 
 ## Literature Review
 
-In the rapidly evolving financial markets, traditional investment strategies like the random walk theory are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of macroeconomic factors significantly influence stock prices [2]. The integration of machine learning into investment portfolio management was constrained until the 1990s by the lack of data and computing resources [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5].
+In rapidly evolving financial markets, traditional investment strategies are increasingly inadequate for risk management and return forecasting [1]. Research has highlighted the importance of macroeconomic influence on stock prices [2]. The lack of data and computing resources constrained the integration of machine learning into investment portfolio management. [3]. However, technological advancements now enable the inclusion of non-financial information such as macroeconomic trends and social media sentiment into predictive models [4][5].
 
 ## Dataset
 - Federal Interest rate [Link](https://fred.stlouisfed.org/series/DFF)
@@ -22,16 +22,16 @@ In the rapidly evolving financial markets, traditional investment strategies lik
 
 ## Problem
 
-The efficacy of traditional portfolio management techniques is frequently compromised by their sole dependence on historical stock prices and basic financial indicators. These models fail to account for the broader economic context and sentiment analysis, which are crucial factors driving stock market movements. These models may offer inadequate portfolio allocations, which might result in lost opportunities or higher risk exposure. Therefore, in order to achieve near-perfect forecasts for portfolio management, it is imperative to build more sophisticated frameworks for portfolio optimization that make use of a wide range of data sources.
+The efficacy of traditional portfolio management techniques solely depend on historical stock prices and basic financial indicators. These models fail to account for the broader economic context, resulting in inadequate portfolio allocations and higher risk exposure. To achieve near-perfect forecasts, it is imperative to build more sophisticated frameworks using wider ranges of data sources.
 
 
 ## Motivation:
-The motivation behind this project stems from the shortcomings of existing portfolio optimization approaches and the potential for ML models to address these challenges effectively. By integrating macroeconomic indicators and possibly sentiment analysis into portfolio optimization, we aim to enhance the accuracy and robustness of investment strategies. This not only allows for better risk management and return maximization but also provides investors with valuable insights into market dynamics. Ultimately, our goal is to bridge the gap between traditional finance and cutting-edge ML techniques to empower investors with superior portfolio management capabilities.
+The motivation behind this project stems from the potential for ML models to address the shortcomings of existing portfolio optimization approaches. By integrating macroeconomic indicators and possibly sentiment analysis into portfolio optimization, we aim to enhance the accuracy and robustness of investment strategies, allowing for better risk management and return maximization and providing investors with valuable insights into market dynamics.
 
 # III. Method
 
 ## 3+ Data Preprocessing Methods:
-Collected datasets have different formats and intervals of records. We will aim to preprocess data to prevent overfitting particular datasets. The examples of preprocessing methodologies are listed below:<br>
+Collected datasets have different formats and intervals of records. The examples of preprocessing methodologies are listed below:<br>
 - Interpolating missing data 
 - Removing Outliers
 - Data format standardization
@@ -39,7 +39,7 @@ Collected datasets have different formats and intervals of records. We will aim 
 - Anaylze and quantize sentiment data
 
 ## 3+ ML Algorithms/Models Identified:
-We use stock price, interest rate, GDP, CPI, savings, unemployment rate, and stock sweets in time series. Therefore, we will utilize the supervised/unsupervised models specifically useful for the time series dataset as listed below:<br>
+We will utilize the supervised/unsupervised models specifically useful for the time series datasets as listed below:<br>
 **Supervised**
 1) VAR (Vector Autoregression)
 2) ARIMA (Autoregressive Integrated Moving Average)
@@ -52,20 +52,17 @@ We use stock price, interest rate, GDP, CPI, savings, unemployment rate, and sto
 
 # IV. (Potential) Results and Discussion
 ## 3+ Quantitative Metrics
-1) Sharpe Ratio (Measure of risk-adjusted return)
-2) Mean Daily Returns
-3) Std Deviation of Daily Returns
+1) Sharpe, Treynor, Sortino Ratios (Measures of risk-adjusted return)
+2) Mean, Std Deviation of Daily Returns
 4) Beta (Sensitivity to Market Returns)
 5) Alpha (Excess returns over market)
-6) Treynor Ratio (Like Sharpe Ratio but focuses on systematic risk)
-7) Sortino Ratio (Like Sharpe and Treynor, but focuses on downside risk)
 8) Performance Metrics (Execution time, Memory footprint)
 
 ## Project Goals
-Maximize accuracy and efficiency by identifying a model with high predictive accuracy while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of sentiment analysis and machine learning techniques.
+Maximize accuracy and efficiency of ML techniques while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of non-financial information.
 
 ## Expected Results
-We expect to find the best model among others for portfolio optimization by exploring the impact of sentiment trends and macroeconomic indicators on market movements.
+We expect to find the best model among others for portfolio optimization by exploring the impact of macroeconomic indicators on market movements.
 
 ## References
 
