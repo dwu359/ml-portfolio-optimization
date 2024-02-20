@@ -92,8 +92,8 @@ We expect to find the best model among others for portfolio optimization by expl
 |          | - Proposed method, results, and discussions.         |
 | Prabhanjan Nayak  | - Created the proposal presentation and the video.            |
 |          | - Team management for all proposal deliverables .     |
-| Member4  | - Contribution.|
-|          | - Contribution.    |
+| Kaushik Arcot  | - Worked on Literature Review for Metrics and Benchmark Performance .|
+|          | - Worked on Presentation and Video.    |
 | Daniel Wu  | - Proofread and revised proposal |
 |          | - Added some metrics    |
 
