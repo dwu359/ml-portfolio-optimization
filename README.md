@@ -76,7 +76,7 @@ We expect to find the best model among others for portfolio optimization by expl
 ## Gantt Chart
 
 
-<img src= https://github.com/dwu359/ml-portfolio-optimization/images/gantt_chart.png, width = "600">
+<img src= https://github.com/dwu359/ml-portfolio-optimization/blob/readme_updates/images/gantt_chart.png, width = "600">
 
 
 
@@ -90,8 +90,8 @@ We expect to find the best model among others for portfolio optimization by expl
 |          | - Found traditional time-series dataset.       |
 | Jungyoun Kwak  | - Found datasets related economic index        |
 |          | - Proposed method, results, and discussions.         |
-| Member3  | - Contribution.            |
-|          | - Contribution.     |
+| Prabhanjan Nayak  | - Created the proposal presentation and the video.            |
+|          | - Team management for all proposal deliverables .     |
 | Member4  | - Contribution.|
 |          | - Contribution.    |
 | Daniel Wu  | - Proofread and revised proposal |
