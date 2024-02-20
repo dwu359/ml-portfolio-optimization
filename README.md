@@ -76,7 +76,7 @@ We expect to find the best model among others for portfolio optimization by expl
 ## Gantt Chart
 
 
-<img src= https://github.com/dwu359/ml-portfolio-optimization/assets/141580034/acefaeeb-ce37-45b6-a6d9-ca925db180fd, width = "600">
+<img src= https://github.com/dwu359/ml-portfolio-optimization/images/gantt_chart.png, width = "600">
 
 
 
