@@ -18,7 +18,7 @@ In rapidly evolving financial markets, traditional investment strategies are inc
 - News Headlines (RSS Feeds): Over 80,000 tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
 - Daily Stock Prices (Yahoo Finance): Daily price data for a subset of S&P 500 stocks since January 2007 will be retrieved via the yfinance API.
 
-# II. Problem Statement
+# II. Problem Definition
 
 ## Problem
 
@@ -28,7 +28,7 @@ The efficacy of traditional portfolio management techniques solely depend on his
 ## Motivation:
 The motivation behind this project stems from the potential for ML models to address the shortcomings of existing portfolio optimization approaches. By integrating macroeconomic indicators and possibly sentiment analysis into portfolio optimization, we aim to enhance the accuracy and robustness of investment strategies, allowing for better risk management and return maximization and providing investors with valuable insights into market dynamics.
 
-# III. Method
+# III. Methods
 
 ## 3+ Data Preprocessing Methods:
 Collected datasets have different formats and intervals of records. The examples of preprocessing methodologies are listed below:<br>
