@@ -10,13 +10,13 @@ In rapidly evolving financial markets, traditional investment strategies are inc
 
 ## Dataset
 - Federal Interest rate [Link](https://fred.stlouisfed.org/series/DFF)
-- GDP (gross domestic product) [Link](https://fred.stlouisfed.org/series/GDP)
-- CPI (consumer price index) [Link](https://fred.stlouisfed.org/series/CPIAUCSL)
+- GDP  [Link](https://fred.stlouisfed.org/series/GDP)
+- CPI  [Link](https://fred.stlouisfed.org/series/CPIAUCSL)
 - Personal saving rate [Link](https://fred.stlouisfed.org/series/PSAVERT)
 - Unemployment rate [Link](https://fred.stlouisfed.org/series/UNRATE)
-- Stock Tweets: This dataset containing dates, ticker symbols, and parsed headline text, will be utilized for sentiment analysis and potential prediction.[Link](https://www.kaggle.com/datasets/equinxx/stock-tweets-for-sentiment-analysis-and-prediction)
-- News Headlines (RSS Feeds): Over 80,000 tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
-- Daily Stock Prices (Yahoo Finance): Daily price data for a subset of S&P 500 stocks since January 2007 will be retrieved via the yfinance API.
+- Stock Tweets: This dataset will be utilized for sentiment analysis and potential prediction.[Link](https://www.kaggle.com/datasets/equinxx/stock-tweets-for-sentiment-analysis-and-prediction)
+- News Headlines (RSS Feeds): Tweets covering popular stocks will be analyzed to gauge sentiment.[Link](https://www.kaggle.com/datasets/shtrausslearning/news-trading/data)
+- Daily Stock Prices (Yahoo Finance): Daily price data for a subset of S&P 500 stocks since January 2007 via the yfinance API.
 
 # II. Problem Definition
 
@@ -36,27 +36,29 @@ Collected datasets have different formats and intervals of records. The examples
 - Removing Outliers
 - Data format standardization
 - Merge features from multiple datasets
-- Anaylze and quantize sentiment data
+- Analyze and quantize sentiment data
 
 ## 3+ ML Algorithms/Models Identified:
-We will utilize the supervised/unsupervised models specifically useful for the time series datasets as listed below:<br>
+We will utilize the supervised/unsupervised models useful for the time series datasets as listed below: (method: explanation)<br>
 **Supervised**
-1) VAR (Vector Autoregression)
-2) ARIMA (Autoregressive Integrated Moving Average)
-3) LSTM
+1. VAR (Vector Autoregression) - captures relationship between multiple quantities over time
+2.  ARIMA (Autoregressive Integrated Moving Average) - predict future trends based on past correlated parameters
+3. LSTM - learns order dependence well for longer sequential data without having a vanishing gradient problem 
 
 **Unsupervised**
-1) K-Means Clustering
-2) DBSCAN
-3) SOM (Self-organizing Maps)
+1. K-Means Clustering - useful for semantic analysis of investor sentiment data.
+2. DBSCAN - another semantic clustering technique to compare against K Means
+3. SOM (Self-organizing Maps) - Semantic data dimensionality reduction to improve grid clustering
+
 
 # IV. (Potential) Results and Discussion
 ## 3+ Quantitative Metrics
-1) Sharpe, Treynor, Sortino Ratios (Measures of risk-adjusted return)
-2) Mean, Std Deviation of Daily Returns
-4) Beta (Sensitivity to Market Returns)
-5) Alpha (Excess returns over market)
-8) Performance Metrics (Execution time, Memory footprint)
+1. Sharpe, Treynor, Sortino Ratios ( risk-adjusted return measures)
+2. Mean, Std Deviation of Daily Returns
+4. Beta (Market Returns Sensitivity)
+5. Alpha (Excess returns over market)
+6. Execution time
+7. Memory footprint
 
 ## Project Goals
 Maximize accuracy and efficiency of ML techniques while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of non-financial information.
@@ -90,7 +92,7 @@ We expect to find the best model among others for portfolio optimization by expl
 |          | - Found traditional time-series dataset.       |
 | Jungyoun Kwak  | - Found datasets related economic index        |
 |          | - Proposed method, results, and discussions.         |
-| Prabhanjan Nayak  | - Created the proposal presentation and the video.            |
+| Prabhanjan Nayak  | - Created the proposal presentation,video, and method explanations.            |
 |          | - Team management for all proposal deliverables .     |
 | Kaushik Arcot  | - Worked on Literature Review for Metrics and Benchmark Performance .|
 |          | - Worked on Presentation and Video.    |
