@@ -42,7 +42,7 @@ Collected datasets have different formats and intervals of records. The examples
 We will utilize the supervised/unsupervised models useful for the time series datasets as listed below: (method: explanation)<br>
 **Supervised**
 1. VAR (Vector Autoregression) - captures relationship between multiple quantities over time
-2.  ARIMA (Autoregressive Integrated Moving Average) - predict future trends based on past correlated parameters
+2.  ARIMA (Autoregressive Integrated Moving Average) - predicts future trends based on past correlated parameters
 3. LSTM - learns order dependence well for longer sequential data without having a vanishing gradient problem 
 
 **Unsupervised**
