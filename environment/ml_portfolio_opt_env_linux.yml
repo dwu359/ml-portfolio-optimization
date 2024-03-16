@@ -10,12 +10,10 @@ dependencies:
 - imageio
 - scikit-learn
 - notebook
-- statsmodels
 - jupyterlab
 - scikit-image
 - pandas
 - ipywidgets
-- statsmodels
 - seaborn
 - pip
 
@@ -23,3 +21,4 @@ dependencies:
   - tweet-preprocessor
   - yfinance
   - statsmodels
+  - pmdarima
