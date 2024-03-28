@@ -1,24 +1,24 @@
-## Repository Description
+# Repository Description
 
-# Repository Structure
+## Repository Structure
 
-| dataset
-    | econ_data
-        | ...
-    | stock_data
-        | ...
-| environment
-    | ... 
-| images
-    | ... 
-| src
-    | myarima.py 
-| test
-    | ... 
-| portfolo_optimization.ipynb
-| README.md
+| dataset  
+    | econ_data  
+        | ...  
+    | stock_data  
+        | ...  
+| environment  
+    | ...   
+| images  
+    | ...   
+| src  
+    | myarima.py   
+| test  
+    | ...   
+| portfolo_optimization.ipynb  
+| README.md  
 
-# Structure Information
+## Structure Information
 
 **/dataset**
 
@@ -39,7 +39,7 @@ Directory to hold relevant images for the report.
 
 Directory to hold relevant model files for the report.
 
-- */src/myarima.py*
+- **/src/myarima.py**
     
 The current implementation of the ARIMA model. 
 
