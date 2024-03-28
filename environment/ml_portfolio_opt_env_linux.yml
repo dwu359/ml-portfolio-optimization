@@ -16,6 +16,7 @@ dependencies:
 - ipywidgets
 - seaborn
 - pip
+- tensorflow
 
 - pip:
   - tweet-preprocessor

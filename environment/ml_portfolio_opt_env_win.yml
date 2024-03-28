@@ -1,6 +1,7 @@
 name: ml_portfolio_opt
 channels:
 - defaults
+- conda-forge
 dependencies:
 - 'python>=3.11'
 - matplotlib
@@ -15,6 +16,7 @@ dependencies:
 - ipywidgets
 - seaborn
 - pip
+- tensorflow
 
 - pip:
   - tweet-preprocessor
