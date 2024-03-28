@@ -4,17 +4,12 @@
 
 | dataset  
 &emsp;| econ_data  
-&emsp;&emsp;| ...  
-&emsp;| stock_data  
-&emsp;&emsp;| ...  
-| environment  
-&emsp;| ...   
+&emsp;| stock_data   
+| environment   
 | images  
-&emsp;| ...   
 | src  
 &emsp;| myarima.py   
 | test  
-&emsp;| ...   
 | portfolo_optimization.ipynb  
 | README.md  
 
@@ -22,7 +17,7 @@
 
 **/dataset**
 
-This directory holds most of our data. The *econ_data* subfolder includes
+This directory holds all of our data. The *econ_data* subfolder includes
 information about economic indicators that are inputs to the clustering models.
 The *stock_data* subfolder includes the ticker data for 10 stocks since 2007. 
 
