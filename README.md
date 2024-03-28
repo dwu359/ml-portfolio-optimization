@@ -1,6 +1,5 @@
-## CS7641 Project - Group #11
 # ML based Portfolio Management with Macro-Financial Indicators
-
+#### CS7641 Project - Group 11
 
 # I. Introduction
 
