@@ -340,8 +340,7 @@ class MyKMeans:
         plt.show()
     
     def gdp_quarterly_clustering_pca(self, n_clusters=4):
-        # !! CURRENTLY DOES NOT WORK !!
-        # PCA transformation
+
         pca = PCA(n_components=2)
         daily_returns_t = self.data.T
         pca.fit(daily_returns_t)
