@@ -32,7 +32,7 @@ class MyKMeans:
         self.features = None
         self.features_scaled = None
         self.data = None
-        self.scaler = None
+        self.scaler = StandardScaler()
 
         self.metrics_without_pca = {
             "k": [],
@@ -92,8 +92,7 @@ class MyKMeans:
         self.features["mean_returns"] = self.data.mean()
         self.features["volatility"] = self.data.std()
 
-        # Feature Scaling
-        self.scaler = StandardScaler()
+        
         self.features_scaled = self.scaler.fit_transform(self.features)
 
     def gdp_quarterly_feature_engineering(self):
@@ -129,8 +128,7 @@ class MyKMeans:
         ).dropna()
 
         # Scale features
-        scaler = StandardScaler()
-        self.features_scaled = scaler.fit_transform(self.features)
+        self.features_scaled = self.scaler.fit_transform(self.features)
 
 
 
@@ -346,8 +344,7 @@ class MyKMeans:
         pca.fit(daily_returns_t)
         daily_returns_pca = pca.transform(daily_returns_t)
         features_pca = pd.DataFrame(daily_returns_pca, index=self.data.columns, columns=['PC1', 'PC2'])
-        scaler = StandardScaler()
-        features_pca_scaled = scaler.fit_transform(features_pca)
+        features_pca_scaled = self.scaler.fit_transform(features_pca)
 
 
         # Clustering with PCA
@@ -387,8 +384,7 @@ class MyKMeans:
             }).dropna()
 
             # Scale features
-            scaler = StandardScaler()
-            features_scaled = scaler.fit_transform(features)
+            features_scaled = self.scaler.fit_transform(features)
 
             # Number of clusters
             n_clusters = 4
@@ -427,8 +423,7 @@ class MyKMeans:
             }).dropna()
 
             # Scale features
-            scaler = StandardScaler()
-            features_scaled = scaler.fit_transform(features)
+            features_scaled = self.scaler.fit_transform(features)
 
             # Number of clusters
             n_clusters = 4
