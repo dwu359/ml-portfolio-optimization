@@ -347,15 +347,17 @@ class MyKMeans:
         pca.fit(daily_returns_t)
         daily_returns_pca = pca.transform(daily_returns_t)
         features_pca = pd.DataFrame(daily_returns_pca, index=self.data.columns, columns=['PC1', 'PC2'])
-        print(features_pca[:, 0])
+        scaler = StandardScaler()
+        features_pca_scaled = scaler.fit_transform(features_pca)
+
 
         # Clustering with PCA
         kmeans_pca = KMeans(n_clusters=n_clusters, random_state=42)
-        clusters_pca = kmeans_pca.fit_predict(features_pca)
+        clusters_pca = kmeans_pca.fit_predict(features_pca_scaled)
 
         # Plotting with PCA
         plt.figure(figsize=(8, 6))
-        sns.scatterplot(x=features_pca[:, 0], y=features_pca[:, 1], hue=clusters_pca, palette='viridis', legend='full',s=100)
+        sns.scatterplot(x=features_pca_scaled[:, 0], y=features_pca_scaled[:, 1], hue=clusters_pca, palette='viridis', legend='full',s=100)
         plt.title(f'Quarterly Stock Returns vs GDP Growth with PCA (n_clusters={n_clusters})')
         plt.xlabel('Principal Component 1')
         plt.ylabel('Principal Component 2')
@@ -363,9 +365,9 @@ class MyKMeans:
         plt.show()
 
         # Evaluation metrics for PCA version
-        silhouette_avg_pca = silhouette_score(features_pca, clusters_pca)
-        davies_bouldin_pca = davies_bouldin_score(features_pca, clusters_pca)
-        calinski_harabasz_pca = calinski_harabasz_score(features_pca, clusters_pca)
+        silhouette_avg_pca = silhouette_score(features_pca_scaled, clusters_pca)
+        davies_bouldin_pca = davies_bouldin_score(features_pca_scaled, clusters_pca)
+        calinski_harabasz_pca = calinski_harabasz_score(features_pca_scaled, clusters_pca)
 
         # Print evaluation metrics for with PCA
         print(f"With PCA - n_clusters={n_clusters}, Silhouette Score: {silhouette_avg_pca:.2f}, Davies-Bouldin Index: {davies_bouldin_pca:.2f}, Calinski-Harabasz Index: {calinski_harabasz_pca:.2f}")
