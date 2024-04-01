@@ -5,7 +5,7 @@ import pandas as pd
 class InitDataset:
         
     @classmethod
-    def create_econ_data(self, init=False):
+    def create_econ_data(init=False):
         if not init:
             return
         # Define datasets paths
@@ -56,7 +56,7 @@ class InitDataset:
         )
 
     @classmethod
-    def create_merged_stock_data(self, init=False):
+    def create_merged_stock_data(init=False):
         if not init:
             return
         datasets = [
@@ -87,7 +87,7 @@ class InitDataset:
         merged_stocktick_df.to_csv("./dataset/combined_stock_data.csv", index=True)
 
     @classmethod
-    def create_adj_closed_price(self, init=False):
+    def create_adj_closed_price(init=False):
         if not init:
             return
         directory = 'dataset/stock_data'
@@ -112,3 +112,11 @@ class InitDataset:
 
         combined_df = pd.concat(dfs, axis=1)
         combined_df.to_csv('./dataset/stock_data/combined_stock_adj_closed.csv', index=True)
+    
+    def get_test_train_data():
+        dateparse = lambda dates: pd.to_datetime(dates, format='%Y-%m-%d')
+        price_data = pd.read_csv(r'dataset/stock_data/combined_stock_adj_closed.csv', parse_dates=['Date'], index_col='Date', date_parser=dateparse)
+        train_data = price_data[price_data.index < '2023-01-01']
+        test_data = price_data[price_data.index >= '2023-01-01']
+        index_data = pd.read_csv(r'dataset/stock_data/SPY_data.csv', parse_dates=['Date'], index_col='Date', date_parser=dateparse)['Adj Close']
+        return test_data, train_data, index_data
