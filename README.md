@@ -67,7 +67,7 @@ machine learning methods of selecting features. We chose PCA specifically
 because PCA is a popular unsupervised learning method of performing feature
 extraction.
 
- <img src="images/kmeans_images/kmeans_wo_pcapng" width = "600">
+ <img src="images/kmeans_images/kmeans_wo_pca.png" width = "600">
  <img src="images/kmeans_images/kmeans_pca.png" width = "600">
 
 We explored using K-means to cluster 10 of most popular stock indices. Although
@@ -188,7 +188,7 @@ Given the limitations encountered with the ARIMA model, we intend to leverage it
 ## Gantt Chart
 
 
-<img src="images/gantt_chart.png" width = "600">
+<img src="images/project_mgmt/gantt_chart_proposal.png" width = "600">
 
 ## Proposal Contribution Table
 
