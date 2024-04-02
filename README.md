@@ -67,8 +67,8 @@ machine learning methods of selecting features. We chose PCA specifically
 because PCA is a popular unsupervised learning method of performing feature
 extraction.
 
- <img src=" images/kmeans_images/kmeans_wo_pcapng" width = "600">
- <img src=" images/kmeans_images/kmeans_pca.png" width = "600">
+ <img src="images/kmeans_images/kmeans_wo_pcapng" width = "600">
+ <img src="images/kmeans_images/kmeans_pca.png" width = "600">
 
 We explored using K-means to cluster 10 of most popular stock indices. Although
 K-means doesn’t select stocks directly, we altered the algorithm to choose the
@@ -80,7 +80,7 @@ Since PCA turned out to output quite similar results compared to mean returns vs
 volatility, this confirmed our assumptions that mean returns and volatility were
 good measurements to categorize stocks.
 
-<img src=" images/kmeans_images/kmeans_elbow_method.png" width = "600">
+<img src="images/kmeans_images/kmeans_elbow_method.png" width = "600">
 
 Through the elbow method, we confirmed that the most optimal number of clusters
 without PCA was 3, and the optimal number of clusters with PCA was 4.
@@ -89,15 +89,15 @@ For the supervised learning aspect of our project, we opted for the ARIMA (Autor
 ARIMA models are a popular tool in time series analysis, particularly in forecasting future values based on historical data. By incorporating lagged moving averages, ARIMA models provide a method to smooth out fluctuations and identify patterns in time series data. However, their reliance on past observations inherently assumes that future behavior will resemble the past, making them susceptible to inaccuracies in volatile market conditions like financial crises or during periods of rapid technological advancements. While ARIMA models offer valuable insights, it's essential to supplement their predictions with other analytical techniques and consider the broader economic and technological landscape for more robust forecasting in dynamic markets.
 We conducted exploratory data analysis (EDA) on a selection of 10 ticker stocks, focusing on their adjusted closing prices from 2018 to 2024. Our EDA encompassed various aspects, including the visualization of stock volatility, daily returns, quarterly returns, annual returns, adjusted closing prices over the years, and a covariance matrix heatmap of portfolio returns. 
 
-<img src=" images/volitality_plots/adj_closed_all.png" width = "600">
+<img src="images/volitality_plots/adj_closed_all.png" width = "600">
 
-<img src=" images/volitality_plots/annual_returns.png" width = "600">
+<img src="images/volitality_plots/annual_returns.png" width = "600">
 
-<img src=" images/volitality_plots/quarterly_returns.png" width = "600">
+<img src="images/volitality_plots/quarterly_returns.png" width = "600">
 
-<img src=" images/volitality_plots/cov_heatmap.png" width = "600">
+<img src="images/volitality_plots/cov_heatmap.png" width = "600">
 
-<img src=" images/volitality_plots/portfolio_volitality.png" width = "600">
+<img src="images/volitality_plots/portfolio_volitality.png" width = "600">
 
 
 While preparing our data for modeling, we rigorously checked for seasonality and
@@ -115,7 +115,7 @@ the alternative hypothesis suggesting its absence. Failure to reject the null
 hypothesis indicates non-stationarity, implying the series may exhibit either
 linear or difference stationary characteristics.
 
-<img src=" images/arima_images/seasonal_decompose.png" width = "600">
+<img src="images/arima_images/seasonal_decompose.png" width = "600">
 
 In addition to checking for seasonality and stationarity, we performed seasonal decomposition to extract the underlying time series components, namely Trend and Seasonality, from our data. To mitigate the magnitude of values and address any growing trends within the series, we initially applied a logarithmic transformation. Subsequently, we calculated the rolling average of the log-transformed series, aggregating data from the preceding 12 months to compute mean consumption values at each subsequent point in the series. Following data preprocessing, we partitioned the dataset into training and testing subsets, preserving the chronological order of observations to maintain the time-series nature of the data.
 For tuning the hyperparameters of the ARIMA model, denoted as a tuple (p, d, q),
@@ -136,7 +136,7 @@ Additionally, we leveraged grid search methods and the auto_arima function to sy
 ## Project Goals
 Maximize accuracy and efficiency of ML techniques while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of non-financial information.
 
-<img src=" images/kmeans_images/kmeans_metrics.png" width = "600">
+<img src="images/kmeans_images/kmeans_metrics.png" width = "600">
 
 Ultimately, we found that feature extraction via PCA performed slightly better than mean returns vs volatility in Silhouette, Davies Bouldin, and Calinski Harabasz scores for K values from 3 to 9. We chose these metrics because all three of these didn’t require ground truth labels. Silhouette most matches our observation that k=3 is the best choice for K. However, Davies Bouldin and Calinski Harabasz metrics suggest that k=9 is better especially for PCA, which contradicts what we have seen through the elbow method. Therefore, we suspect that PCA may be overfitted since the top principal components are not as well defined, so they may capture irrelevant details in the dataset. 
 Overall, we conclude the current K-means algorithm with and without PCA is an
@@ -145,11 +145,11 @@ Silhouette score for k=3 and k=4, and a Davies Bouldin score below 0.4.
 Additionally, the low Calinski Harabasz score for k=3 may show that k=3 is not
 as overfitted as k=9.
 
-<img src=" images/arima_images/acf_pcf.png" width = "600">
+<img src="images/arima_images/acf_pcf.png" width = "600">
 
 For the ARIMA model, based on the partial autocorrelation (PACF) and autocorrelation (ACF) plots, along with grid search methodology, we determined the optimal parameters for the ARIMA model to be (p, d, q) = (,,).
 
-<img src=" images/arima_images/rolling_mean_sd.png" width = "600">
+<img src="images/arima_images/rolling_mean_sd.png" width = "600">
 
 Furthermore, examination of the plot for rolling mean and standard deviation
 revealed an increasing trend in both metrics. Additionally, with a p-value
@@ -158,7 +158,7 @@ non-stationarity, the time series data is deemed to be non-linear. Consequently,
 to address this non-linearity, the natural logarithm of the time series was
 applied, as shown below. 
 
-<img src=" images/arima_images/log_roll_mean.png" width = "600">
+<img src="images/arima_images/log_roll_mean.png" width = "600">
 
 As observed, the application of log-transformation to the time series has
 induced a slight linearity, rendering it amenable to modeling. This
