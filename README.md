@@ -188,7 +188,7 @@ Given the limitations encountered with the ARIMA model, we intend to leverage it
 ## Gantt Chart
 
 
-<img src="images/project_mgmt/gantt_chart_proposal.png" width = "600">
+<img src="images/project_mgmt/gantt_chart.png" width = "600">
 
 ## Proposal Contribution Table
 
