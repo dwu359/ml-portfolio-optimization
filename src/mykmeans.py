@@ -181,19 +181,19 @@ class MyKMeans:
         daily_returns_t = self.data.T
         pca.fit(daily_returns_t)
         daily_returns_pca = pca.transform(daily_returns_t)
-        features_pca = pd.DataFrame(daily_returns_pca, index=self.data.columns, columns=['PC1', 'PC2'])
-        features_pca_scaled = self.scaler.fit_transform(features_pca)
+        self.features = pd.DataFrame(daily_returns_pca, index=self.data.columns, columns=['PC1', 'PC2'])
+        self.features_scaled = self.scaler.fit_transform(self.features)
 
         # Clustering with PCA and selecting stocks
         print("\nClustering with PCA")
         for k in range_n_clusters:
             kmeans_pca = KMeans(n_clusters=k, random_state=42)
-            features_pca['cluster'] = kmeans_pca.fit_predict(features_pca_scaled)
+            self.features['cluster'] = kmeans_pca.fit_predict(self.features_scaled)
 
             # Evaluation metrics
-            silhouette_avg_pca = silhouette_score(features_pca_scaled, features_pca['cluster'])
-            davies_bouldin_pca = davies_bouldin_score(features_pca_scaled, features_pca['cluster'])
-            calinski_harabasz_pca = calinski_harabasz_score(features_pca_scaled, features_pca['cluster'])
+            silhouette_avg_pca = silhouette_score(self.features_scaled, self.features['cluster'])
+            davies_bouldin_pca = davies_bouldin_score(self.features_scaled, self.features['cluster'])
+            calinski_harabasz_pca = calinski_harabasz_score(self.features_scaled, self.features['cluster'])
 
             # Storing metrics
             self.metrics_with_pca['k'].append(k)
@@ -201,12 +201,12 @@ class MyKMeans:
             self.metrics_with_pca['davies_bouldin'].append(davies_bouldin_pca)
             self.metrics_with_pca['calinski_harabasz'].append(calinski_harabasz_pca)
 
-            self.features['cluster_pca'] = features_pca['cluster']
+            self.features['cluster_pca'] = self.features['cluster']
             selected_stocks_pca = self.features.groupby('cluster_pca')['volatility'].idxmin().values.tolist()
             print(f"Suggested Stocks with PCA for k={k}: {selected_stocks_pca}")
 
 
-            sns.scatterplot(data=features_pca, x='PC1', y='PC2', hue='cluster', palette='viridis', s=100)
+            sns.scatterplot(data=self.features, x='PC1', y='PC2', hue='cluster', palette='viridis', s=100)
             plt.title(f'Stock Clusters with PCA (k={k})')
             plt.xlabel('Principal Component 1')
             plt.ylabel('Principal Component 2')
