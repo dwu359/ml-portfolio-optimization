@@ -176,19 +176,12 @@ For the K-means model without PCA (k=3), and for the KMeans model with PCA
 comparing the metrics vs the benchmark model, implementing the maximization of
 Sharpe ratio using modern portfolio theory.
 
-| Model | Mean Daily Returns | Std Dev of Daily Returns | Sharpe Ratio |
-Treynor Ratio | Beta | Alpha | Cumulative Return |
-
-|----------|----------------|---------------------|---------------------|-------|---------|-------------|-------------|
-
-| Benchmark | 0.0037 | 0.0267 | 2.205 | 0.00167 | 2.103 | 0.0016 | 1.301 |
-
-| K Means (w/o PCA) | 0.00243 | 0.0148 | 2.609 | 0.00165 | 1.351 | 0.0011 |
-0.782 |
-
-| Kmeans (w PCA) | 0.00262 | 0.0161 | 2.588 | 0.00160 | 1.514 | 0.0011 | 0.859 |
-
-| ARIMA + MPT | 0.00223 | 0.0187 | 1.937 | 0.00141 | 1.478 | 0.0008 | 0.688 |
+| Model              | Mean Daily Returns | Std Dev of Daily Returns | Sharpe Ratio | Treynor Ratio | Beta  | Alpha | Cumulative Return |
+|--------------------|--------------------|--------------------------|--------------|---------------|-------|-------|-------------------|
+| Benchmark          | 0.0037             | 0.0267                   | 2.205        | 0.00167       | 2.103 | 0.0016| 1.301             |
+| K Means (w/o PCA)  | 0.00243            | 0.0148                   | 2.609        | 0.00165       | 1.351 | 0.0011| 0.782             |
+| Kmeans (w PCA)     | 0.00262            | 0.0161                   | 2.588        | 0.00160       | 1.514 | 0.0011| 0.859             |
+| ARIMA + MPT        | 0.00223            | 0.0187                   | 1.937        | 0.00141       | 1.478 | 0.0008| 0.688             |
 
 
 
