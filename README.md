@@ -38,7 +38,7 @@ Collected datasets have different formats and intervals of records. The examples
 
 We utilized supervised/unsupervised models useful for the time series datasets.
 Our current models include K-means clustering for unsupervised and
-Autoregressive Integrated Moving Average (ARIMA) for supervised.
+Autoregressive Integrated Moving Average (ARIMA) for supervised. The stock data has been divided into two sets: training data covering the period from 2018 to 2022, and test data for the year 2023.
 
 We chose K-means particularly because it is simple and fast, and we did not feel
 the need to obtain probabilities from a soft clustering model like GMM.  We plan
@@ -101,8 +101,7 @@ We conducted exploratory data analysis (EDA) on a selection of 10 ticker stocks,
 
 
 While preparing our data for modeling, we rigorously checked for seasonality and
-stationarity, both crucial conditions for employing the ARIMA model using the
-python statsmodel library. Seasonality, characterized by regular and predictable
+stationarity, both crucial conditions for employing the ARIMA model. Seasonality, characterized by regular and predictable
 patterns that repeat over a calendar year, can adversely impact regression
 models. To ensure stationarity, a prerequisite for ARIMA, we employed
 differencing techniques to remove trends and seasonal structures from the data.
@@ -147,7 +146,7 @@ as overfitted as k=9.
 
 <img src="images/arima_images/acf_pcf.png" width = "600">
 
-For the ARIMA model, based on the partial autocorrelation (PACF) and autocorrelation (ACF) plots, along with grid search methodology, we determined the optimal parameters for the ARIMA model to be (p, d, q) = (1,1,0).
+We utilized functions from the statsmodel library for implementing the ARIMA model. Based on the partial autocorrelation (PACF) and autocorrelation (ACF) plots, along with grid search methodology, we determined the optimal parameters for the ARIMA model to be (p, d, q) = (1,1,0).
 
 <img src="images/arima_images/rolling_mean_sd.png" width = "600">
 
@@ -165,11 +164,7 @@ induced a slight linearity, rendering it amenable to modelling. This
 transformation has effectively mitigated the non-linear trends present in the
 original data.
 
-
-
-## Next Steps
-
-For K-means, we realized that our choice of macro-economic indicators such as GDP, CPI, unemployment rate may not be the best candidates for features for unsupervised clustering since these economic indicators don’t differentiate between stocks. In the future, we plan to utilize more stock specific economic indicators to increase the performance of our clustering algorithm.
+Lastly, we employed Modern Portfolio Theory (MPT) as the benchmark model for comparison, which provides a framework for constructing investment portfolios that aim to optimize the trade-off between risk and return. The goal of this algorithm is to find the best asset allocation within a portfolio in order to maximize the Sharpe ratio, a risk-adjusted return metric. The benchmark approach begins by allocating equal amounts to all assets in the portfolio. It then uses optimization techniques, such as Sequential Least Squares Quadratic Programming (SLSQP), to iteratively adjust the asset allocations while adhering to limitations, such as the requirement that the overall allocation add to 1.0. The objective function aims to maximize the negative Sharpe ratio, hence maximizing the Sharpe ratio itself. By using this benchmark model to historical price data, we can determine the best asset allocations that would have resulted in the maximum risk-adjusted returns for the specified time period. Comparing the results of this benchmark model to those of our ARIMA and Kmeans models allows us to assess the performance and efficacy of our suggested approaches for forecasting and portfolio optimization.
 
 For the K-means model without PCA (k=3), and for the KMeans model with PCA
 (k=4), along with the ARIMA model for Portfolio optimization, here is a table
@@ -184,7 +179,9 @@ Sharpe ratio using modern portfolio theory.
 | ARIMA + MPT        | 0.00223            | 0.0187                   | 1.937        | 0.00141       | 1.478 | 0.0008| 0.688             |
 
 
+## Next Steps
 
+For K-means, we realized that our choice of macro-economic indicators such as GDP, CPI, unemployment rate may not be the best candidates for features for unsupervised clustering since these economic indicators don’t differentiate between stocks. In the future, we plan to utilize more stock specific economic indicators to increase the performance of our clustering algorithm.
 
 Given the limitations encountered with the ARIMA model, we intend to leverage its outputs as input features for a more sophisticated model, such as a Recurrent Neural Network (RNN) or Long Short-Term Memory (LSTM) network. These architectures have demonstrated remarkable efficacy in capturing complex temporal dependencies, making them particularly suitable for modeling economic indicators. By integrating ARIMA predictions alongside other relevant micro-economic indicators into the neural network, we anticipate achieving improved forecasting accuracy and robustness. 
 
