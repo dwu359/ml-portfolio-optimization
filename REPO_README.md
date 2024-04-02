@@ -8,7 +8,10 @@
 | environment   
 | images  
 | src  
-&emsp;| myarima.py   
+&emsp;| init_dataset.py  
+&emsp;| myoptimizer.py 
+&emsp;| myarima.py 
+&emsp;| mykmeans.py  
 | test  
 | portfolo_optimization.ipynb  
 | README.md  
@@ -32,11 +35,30 @@ Directory to hold relevant images for the report.
 
 **/src**
 
-Directory to hold relevant model files for the report.
+Directory to hold relevant model files for the report. These files should
+contain most of the business logic for the ML models, while the jupyter notebook
+is mainly used for quick development and visualizations. 
+
+- **/src/init_dataset.py**
+    
+Logic used to initialize and conglomerate the large datasets such as
+`dataset/stock_data/combined_stock_adj_closed`,
+`dataset/combined_stock_data.csv`, `dataset/econ_data/combined_econ_data.csv`. 
+
+- **/src/myoptimizer.py**
+    
+Baseline model that will be used to determine stock allocation that optimizes
+the maximum returns from the portfolio. This model utilizes allocation from the
+other models as input. 
 
 - **/src/myarima.py**
     
 The current implementation of the ARIMA model. 
+
+- **/src/mykmeans.py**
+    
+Kmeans clustering model that attempts to cluster stock data across macroeconomic
+indicators such as GDP, Interest Rates, etc. 
 
 **/test**
 
