@@ -147,7 +147,7 @@ as overfitted as k=9.
 
 <img src="images/arima_images/acf_pcf.png" width = "600">
 
-For the ARIMA model, based on the partial autocorrelation (PACF) and autocorrelation (ACF) plots, along with grid search methodology, we determined the optimal parameters for the ARIMA model to be (p, d, q) = (,,).
+For the ARIMA model, based on the partial autocorrelation (PACF) and autocorrelation (ACF) plots, along with grid search methodology, we determined the optimal parameters for the ARIMA model to be (p, d, q) = (1,1,0).
 
 <img src="images/arima_images/rolling_mean_sd.png" width = "600">
 
@@ -161,7 +161,7 @@ applied, as shown below.
 <img src="images/arima_images/log_roll_mean.png" width = "600">
 
 As observed, the application of log-transformation to the time series has
-induced a slight linearity, rendering it amenable to modeling. This
+induced a slight linearity, rendering it amenable to modelling. This
 transformation has effectively mitigated the non-linear trends present in the
 original data.
 
@@ -170,7 +170,24 @@ original data.
 ## Next Steps
 
 For K-means, we realized that our choice of macro-economic indicators such as GDP, CPI, unemployment rate may not be the best candidates for features for unsupervised clustering since these economic indicators don’t differentiate between stocks. In the future, we plan to utilize more stock specific economic indicators to increase the performance of our clustering algorithm.
+
+For the K-means model without PCA (k=3), and for the KMeans model with PCA
+(k=4), along with the ARIMA model for Portfolio optimization, here is a table
+comparing the metrics vs the benchmark model, implementing the maximization of
+Sharpe ratio using modern portfolio theory.
+
+| Model     | Mean Daily Returns  |  Std Dev of Daily Returns | Sharpe Ratio |
+Treynor Ratio | Beta | Alpha | Cumulative Return |
+|----------|------|-------|------|-------|---------|-------------|-------------|
+| Benchmark | 0.0037 | 0.0267 | 2.205 | 0.00167 | 2.103 | 0.0016 | 1.301 |
+| K Means (w/o PCA) | 0.00243 | 0.0148 | 2.609 | 0.00165 | 1.351 | 0.0011 | 0.782 |
+| Kmeans (w PCA) | 0.00262 | 0.0161 | 2.588 | 0.00160 | 1.514 | 0.0011 | 0.859 |
+| ARIMA + MPT | 0.00223 | 0.0187 | 1.937 | 0.00141 | 1.478 | 0.0008 | 0.688 |
+
+
+
 Given the limitations encountered with the ARIMA model, we intend to leverage its outputs as input features for a more sophisticated model, such as a Recurrent Neural Network (RNN) or Long Short-Term Memory (LSTM) network. These architectures have demonstrated remarkable efficacy in capturing complex temporal dependencies, making them particularly suitable for modeling economic indicators. By integrating ARIMA predictions alongside other relevant micro-economic indicators into the neural network, we anticipate achieving improved forecasting accuracy and robustness. 
+
 
 
 ## References
@@ -197,13 +214,13 @@ Given the limitations encountered with the ARIMA model, we intend to leverage it
 | Sai      | - Combining stock dataset and EDA        |
 |          | - Data pre-processing and visualizations for ARIMA.       |
 | Jungyoun Kwak  | - Collect economic indicators data set and pre-processing data        |
-|          | - Proposed method, results, and discussions.         |
+|          | - Implementing code and visualizations for Kmeans.         |
 | Prabhanjan Nayak  | - Finalized models, repository structure and description, and report.            |
 |          | - Team management for all midterm deliverables.     |
-| Kaushik Arcot  | - Worked on Literature Review for Metrics and Benchmark Performance .|
-|          | - Worked on Presentation and Video.    |
-| Daniel Wu  | - Proofread and revised proposal |
-|          | - Added some metrics    |
+| Kaushik Arcot  | - Compiled code for modelling ARIMA for all stocks , and code for Benchmark Model using Modern Portfolio Theory|
+|          | - Completed code and compiled metrics of analyzing portfolio allocations. |
+| Daniel Wu  | - PCA feature reduction for Kmeans |
+|          | - Wrote the methods and results for Kmeans    |
 
 
 
