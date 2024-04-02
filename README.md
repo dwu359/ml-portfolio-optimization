@@ -136,12 +136,16 @@ Additionally, we leveraged grid search methods and the auto_arima function to sy
 ## Project Goals
 Maximize accuracy and efficiency of ML techniques while minimizing computational resources, optimize model complexity to ensure robust predictions without overfitting, and enhance portfolio optimization through effective integration of non-financial information.
 
+<img src=" images/kmeans_images/kmeans_metrics.png" width = "600">
+
 Ultimately, we found that feature extraction via PCA performed slightly better than mean returns vs volatility in Silhouette, Davies Bouldin, and Calinski Harabasz scores for K values from 3 to 9. We chose these metrics because all three of these didn’t require ground truth labels. Silhouette most matches our observation that k=3 is the best choice for K. However, Davies Bouldin and Calinski Harabasz metrics suggest that k=9 is better especially for PCA, which contradicts what we have seen through the elbow method. Therefore, we suspect that PCA may be overfitted since the top principal components are not as well defined, so they may capture irrelevant details in the dataset. 
 Overall, we conclude the current K-means algorithm with and without PCA is an
 average performer since it is able to reach a value slightly above 0.5 for
 Silhouette score for k=3 and k=4, and a Davies Bouldin score below 0.4.
 Additionally, the low Calinski Harabasz score for k=3 may show that k=3 is not
 as overfitted as k=9.
+
+<img src=" images/arima_images/acf_pcf.png" width = "600">
 
 For the ARIMA model, based on the partial autocorrelation (PACF) and autocorrelation (ACF) plots, along with grid search methodology, we determined the optimal parameters for the ARIMA model to be (p, d, q) = (,,).
 
@@ -154,12 +158,14 @@ non-stationarity, the time series data is deemed to be non-linear. Consequently,
 to address this non-linearity, the natural logarithm of the time series was
 applied, as shown below. 
 
+<img src=" images/arima_images/log_roll_mean.png" width = "600">
+
 As observed, the application of log-transformation to the time series has
 induced a slight linearity, rendering it amenable to modeling. This
 transformation has effectively mitigated the non-linear trends present in the
 original data.
 
-<img src=" images/arima_images/log_roll_mean.png" width = "600">
+
 
 ## Next Steps
 
@@ -188,12 +194,12 @@ Given the limitations encountered with the ARIMA model, we intend to leverage it
 
 | Name     | Proposal Contributions                                     |
 |----------|-------------------------------------------------------------|
-| Sai      | - Worked on the Introduction and Background        |
-|          | - Found traditional time-series dataset.       |
-| Jungyoun Kwak  | - Found datasets related economic index        |
+| Sai      | - Combining stock dataset and EDA        |
+|          | - Data pre-processing and visualizations for ARIMA.       |
+| Jungyoun Kwak  | - Collect economic indicators data set and pre-processing data        |
 |          | - Proposed method, results, and discussions.         |
-| Prabhanjan Nayak  | - Created the proposal presentation,video, and method explanations.            |
-|          | - Team management for all proposal deliverables .     |
+| Prabhanjan Nayak  | - Finalized models, repository structure and description, and report.            |
+|          | - Team management for all midterm deliverables.     |
 | Kaushik Arcot  | - Worked on Literature Review for Metrics and Benchmark Performance .|
 |          | - Worked on Presentation and Video.    |
 | Daniel Wu  | - Proofread and revised proposal |
