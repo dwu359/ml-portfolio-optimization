@@ -17,6 +17,7 @@ dependencies:
 - seaborn
 - pip
 - tensorflow
+- torchvision
 
 - pip:
   - tweet-preprocessor
