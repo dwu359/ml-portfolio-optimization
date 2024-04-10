@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -87,42 +88,62 @@ class MyLSTM(nn.Module):
             all_y_preds[ticker] = y_pred
         return models, all_loss_tracks, all_y_preds
     
+    @staticmethod
+    def plot_predicted_vs_actual(y_test, y_pred, ticker):
+        plt.figure(figsize=(10, 6))
+        plt.plot(y_test.cpu().numpy(), label='Actual')
+        plt.plot(y_pred, label='Predicted')
+        plt.title(f'Predicted vs Actual for {ticker}')
+        plt.xlabel('Time')
+        plt.ylabel('Value')
+        plt.legend()
+        plt.show()
+
+    @staticmethod
+    def plot_loss_track(loss_track, ticker):
+        plt.figure(figsize=(10, 6))
+        plt.plot(loss_track)
+        plt.title(f'Loss track for {ticker}')
+        plt.xlabel('Epochs')
+        plt.ylabel('Loss')
+        plt.show()
+
+    @staticmethod
     def test(models, test_data, all_loss_tracks, all_y_preds):
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         criterion = nn.MSELoss()
+        
+        # DataFrames to store predicted values and losses
+        predicted_df = pd.DataFrame(index=test_data.index[:-1])
+        loss_df = pd.DataFrame(columns=models.keys())
+        
         for ticker, model in models.items():
             print(f"Evaluating model for ticker: {ticker}")
             with torch.no_grad():
                 # Assuming x_test and y_test are available from test_data
-                x_test = torch.Tensor(test_data[ticker].values[:-1])
-                y_test = torch.Tensor(test_data[ticker].values[1:])
+                x_test = torch.Tensor(test_data[ticker].values[:-1]).unsqueeze(0).unsqueeze(2)
+                x_test = x_test.permute(1, 0, 2).to(device)
+                y_test = torch.Tensor(test_data[ticker].values[1:]).to(device)
                 
                 # Forward pass
-                y_pred = model(x_test.to(device))
+                y_pred = model(x_test)
+                y_pred = y_pred.squeeze().detach().cpu().numpy()
                 
                 # Calculate loss
-                loss = criterion(y_pred, y_test)
+                loss = criterion(torch.Tensor(y_pred), y_test)
                 print(f"Loss for {ticker}: {loss.item()}")
                 
+                # Store predicted values and loss
+                predicted_df[ticker] = y_pred
+                loss_df[ticker] = all_loss_tracks[ticker]
+                
                 # Plot predicted vs actual
-                plt.figure(figsize=(10, 6))
-                plt.plot(y_test.numpy(), label='Actual')
-                plt.plot(y_pred.numpy(), label='Predicted')
-                plt.title(f'Predicted vs Actual for {ticker}')
-                plt.xlabel('Time')
-                plt.ylabel('Value')
-                plt.legend()
-                plt.show()
+                MyLSTM.plot_predicted_vs_actual(y_test, y_pred, ticker)
                 
                 # Plot loss track
-                plt.figure(figsize=(10, 6))
-                plt.plot(all_loss_tracks[ticker])
-                plt.title(f'Loss track for {ticker}')
-                plt.xlabel('Epochs')
-                plt.ylabel('Loss')
-                plt.show()
+                # MyLSTM.plot_loss_track(all_loss_tracks[ticker], ticker)
                 
-                y_pred = all_y_preds[ticker]
-
+        return predicted_df, loss_df
 
 
 
