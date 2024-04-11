@@ -68,9 +68,11 @@ class MyLSTM(nn.Module):
         model, optimizer, criterion = MyLSTM.build_model()
         model, loss_track = MyLSTM.train_model(model, optimizer, criterion, x_train, y_train, num_epochs)
         
-        y_pred = model(x_test.to(device))
-        y_pred = scalar.inverse_transform(y_pred.detach().cpu().numpy())
-        return model, loss_track, y_pred
+        # y_pred = model(x_test.to(device))
+        # y_pred = scalar.inverse_transform(y_pred.detach().cpu().numpy())
+        # return model, loss_track, y_pred
+        # torch.save(model.state_dict(), f'model-states/{ticker}-model-state.pth')
+        return model , loss_track, scalar
 
     
     @staticmethod
@@ -82,11 +84,11 @@ class MyLSTM(nn.Module):
             print("-"*50)
             print(f"Fitting model for ticker: {ticker}")
             print("-"*50)
-            model, loss_track, y_pred = MyLSTM.fit(ticker, train_data, test_data, seq_len, num_epochs)
+            model, loss_track, scalar = MyLSTM.fit(ticker, train_data, test_data, seq_len, num_epochs)
             models[ticker] = model
             all_loss_tracks[ticker] = loss_track
-            all_y_preds[ticker] = y_pred
-        return models, all_loss_tracks, all_y_preds
+            # all_y_preds[ticker] = y_pred
+        return models, all_loss_tracks, scalar
     
     @staticmethod
     def plot_predicted_vs_actual(y_test, y_pred, ticker):
@@ -109,7 +111,7 @@ class MyLSTM(nn.Module):
         plt.show()
 
     @staticmethod
-    def test(models, test_data, all_loss_tracks, all_y_preds):
+    def test(models, test_data, all_loss_tracks, scalar):
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         criterion = nn.MSELoss()
         
@@ -124,25 +126,25 @@ class MyLSTM(nn.Module):
                 x_test = torch.Tensor(test_data[ticker].values[:-1]).unsqueeze(0).unsqueeze(2)
                 x_test = x_test.permute(1, 0, 2).to(device)
                 y_test = torch.Tensor(test_data[ticker].values[1:]).to(device)
-                
+
                 # Forward pass
                 y_pred = model(x_test)
                 y_pred = y_pred.squeeze().detach().cpu().numpy()
-                
+
+                # Inverse transform the predictions using the appropriate scaler
+                y_pred_original_scale = scalar.inverse_transform(y_pred.reshape(-1, 1))
+
                 # Calculate loss
-                loss = criterion(torch.Tensor(y_pred), y_test)
-                print(f"Loss for {ticker}: {loss.item()}")
-                
-                # Store predicted values and loss
-                predicted_df[ticker] = y_pred
-                loss_df[ticker] = all_loss_tracks[ticker]
-                
+                loss = criterion(torch.Tensor(y_pred_original_scale), y_test)
+
                 # Plot predicted vs actual
-                MyLSTM.plot_predicted_vs_actual(y_test, y_pred, ticker)
-                
+                MyLSTM.plot_predicted_vs_actual(y_test, y_pred_original_scale, ticker)
+
                 # Plot loss track
-                # MyLSTM.plot_loss_track(all_loss_tracks[ticker], ticker)
-                
+                MyLSTM.plot_loss_track(all_loss_tracks[ticker], ticker)
+
+                loss_df[ticker] = all_loss_tracks[ticker]
+
         return predicted_df, loss_df
 
 
