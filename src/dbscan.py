@@ -7,6 +7,8 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.neighbors import BallTree
+from sklearn.neighbors import NearestNeighbors
 
 class mydbscan:
     def __init__(self):
