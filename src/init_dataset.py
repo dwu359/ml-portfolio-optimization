@@ -5,7 +5,7 @@ import pandas as pd
 class InitDataset:
         
     @classmethod
-    def create_econ_data(init=False):
+    def create_econ_data(cls, init):
         if not init:
             return
         # Define datasets paths
@@ -56,7 +56,7 @@ class InitDataset:
         )
 
     @classmethod
-    def create_merged_stock_data(init=False):
+    def create_merged_stock_data(cls, init):
         if not init:
             return
         datasets = [
@@ -87,7 +87,7 @@ class InitDataset:
         merged_stocktick_df.to_csv("./dataset/combined_stock_data.csv", index=True)
 
     @classmethod
-    def create_adj_closed_price(init=False):
+    def create_adj_closed_price(cls, init):
         if not init:
             return
         directory = 'dataset/stock_data'
