@@ -95,44 +95,6 @@ class MyKMeans:
         
         self.features_scaled = self.scaler.fit_transform(self.features)
 
-    def gdp_quarterly_feature_engineering(self):
-        # Load GDP data
-        gdp_data_path = "./dataset/combined_econ_data.csv"
-        gdp_data = pd.read_csv(gdp_data_path, parse_dates=["DATE"], index_col="DATE")
-        gdp_quarterly = gdp_data.resample("Q").last()
-
-        # Initialize DataFrame for quarterly returns
-        quarterly_returns_all_stocks = pd.DataFrame()
-
-        # Process each stock file for quarterly returns
-        for symbol, filename in self.stock_files.items():
-            stock_data_path = f"./dataset/stock_data/{filename}"
-            stock_data = pd.read_csv(
-                stock_data_path, parse_dates=["Date"], index_col="Date"
-            )
-            daily_returns = stock_data["Close"].pct_change().dropna()
-            quarterly_returns = daily_returns.resample("Q").mean()
-            quarterly_returns_all_stocks[symbol] = quarterly_returns
-
-        # Ensure there's no missing data across stocks
-        quarterly_returns_all_stocks.dropna(inplace=True)
-
-        # Prepare features for clustering: Mean of quarterly returns and GDP values
-        self.features = pd.DataFrame(
-            {
-                "Mean_Quarterly_Returns": quarterly_returns_all_stocks.mean(axis=1),
-                "GDP": gdp_quarterly["GDP"]
-                .reindex(quarterly_returns_all_stocks.index)
-                .ffill(),
-            }
-        ).dropna()
-
-        # Scale features
-        self.features_scaled = self.scaler.fit_transform(self.features)
-
-
-
-
     def volatility_clustering_without_pca(self, range_n_clusters):
         for k in range_n_clusters:
             kmeans = KMeans(n_clusters=k, random_state=42)
@@ -148,7 +110,11 @@ class MyKMeans:
             calinski_harabasz = calinski_harabasz_score(
                 self.features_scaled, self.features["cluster"]
             )
-
+            
+            print(f"\nFor k={k}:")
+            print(f"Silhouette Score: {silhouette_avg :.4f}")
+            print(f"Davies-Bouldin Index: {davies_bouldin:.4f}")
+            print(f"Calinski-Harabasz Index: {calinski_harabasz:.4f}")
             # Storing metrics
             self.metrics_without_pca["k"].append(k)
             self.metrics_without_pca["silhouette"].append(silhouette_avg)
@@ -176,42 +142,62 @@ class MyKMeans:
             plt.show()
     
     def volatility_clustering_with_pca(self, range_n_clusters, n_components=2):
-        # PCA transformation
-        pca = PCA(n_components)
-        daily_returns_t = self.data.T
-        pca.fit(daily_returns_t)
-        daily_returns_pca = pca.transform(daily_returns_t)
-        self.features = pd.DataFrame(daily_returns_pca, index=self.data.columns, columns=['PC1', 'PC2'])
-        self.features_scaled = self.scaler.fit_transform(self.features)
+        # First, ensure that the features for PCA (mean_returns, volatility) are scaled
+        self.volatility_feature_engineering()  # This prepares self.features_scaled
 
-        # Clustering with PCA and selecting stocks
+        # Perform PCA transformation on scaled features
+        pca = PCA(n_components=n_components)
+        pca_features = pca.fit_transform(self.features_scaled)
+
+        # Create a DataFrame for PCA components
+        pca_df = pd.DataFrame(data=pca_features, columns=['PC1', 'PC2'], index=self.features.index)
+
+        # Re-add the 'volatility' column to the new DataFrame with PCA components
+        pca_df['volatility'] = self.features['volatility']
+
+        # Update self.features to include PCA components AND the 'volatility' column
+        self.features = pca_df
+
+        # Scale PCA components for clustering
+        self.features_scaled = self.scaler.fit_transform(self.features[['PC1', 'PC2']])
+
         print("\nClustering with PCA")
         for k in range_n_clusters:
+            if k == 0:  # KMeans cannot cluster with 0 clusters
+                continue
+
+            # Clustering with PCA-transformed and scaled features
             kmeans_pca = KMeans(n_clusters=k, random_state=42)
             self.features['cluster'] = kmeans_pca.fit_predict(self.features_scaled)
 
-            # Evaluation metrics
+            # Evaluation metrics for clustering
             silhouette_avg_pca = silhouette_score(self.features_scaled, self.features['cluster'])
             davies_bouldin_pca = davies_bouldin_score(self.features_scaled, self.features['cluster'])
             calinski_harabasz_pca = calinski_harabasz_score(self.features_scaled, self.features['cluster'])
-
-            # Storing metrics
+            
+            print(f"\nFor k={k}:")
+            print(f"Silhouette Score: {silhouette_avg_pca :.4f}")
+            print(f"Davies-Bouldin Index: {davies_bouldin_pca:.4f}")
+            print(f"Calinski-Harabasz Index: {calinski_harabasz_pca:.4f}")
+            
+            # Store the evaluation metrics
             self.metrics_with_pca['k'].append(k)
             self.metrics_with_pca['silhouette'].append(silhouette_avg_pca)
             self.metrics_with_pca['davies_bouldin'].append(davies_bouldin_pca)
             self.metrics_with_pca['calinski_harabasz'].append(calinski_harabasz_pca)
 
-            self.features['cluster_pca'] = self.features['cluster']
-            selected_stocks_pca = self.features.groupby('cluster_pca')['volatility'].idxmin().values.tolist()
+            # Select the least volatile stock in each cluster
+            selected_stocks_pca = self.features.groupby('cluster')['volatility'].idxmin().values.tolist()
             print(f"Suggested Stocks with PCA for k={k}: {selected_stocks_pca}")
 
-
+            # Plotting the clusters
             sns.scatterplot(data=self.features, x='PC1', y='PC2', hue='cluster', palette='viridis', s=100)
             plt.title(f'Stock Clusters with PCA (k={k})')
             plt.xlabel('Principal Component 1')
             plt.ylabel('Principal Component 2')
             plt.legend()
             plt.show()
+
     
     def plot_metrics_pca(self):
         # Plotting evaluation metrics for Clustering with PCA
@@ -314,6 +300,40 @@ class MyKMeans:
     
 
 
+    def gdp_quarterly_feature_engineering(self):
+        # Load GDP data
+        gdp_data_path = "./dataset/combined_econ_data.csv"
+        gdp_data = pd.read_csv(gdp_data_path, parse_dates=["DATE"], index_col="DATE")
+        gdp_quarterly = gdp_data.resample("Q").last()
+
+        # Initialize DataFrame for quarterly returns
+        quarterly_returns_all_stocks = pd.DataFrame()
+
+        # Process each stock file for quarterly returns
+        for symbol, filename in self.stock_files.items():
+            stock_data_path = f"./dataset/stock_data/{filename}"
+            stock_data = pd.read_csv(
+                stock_data_path, parse_dates=["Date"], index_col="Date"
+            )
+            daily_returns = stock_data["Close"].pct_change().dropna()
+            quarterly_returns = daily_returns.resample("Q").mean()
+            quarterly_returns_all_stocks[symbol] = quarterly_returns
+
+        # Ensure there's no missing data across stocks
+        quarterly_returns_all_stocks.dropna(inplace=True)
+
+        # Prepare features for clustering: Mean of quarterly returns and GDP values
+        self.features = pd.DataFrame(
+            {
+                "Mean_Quarterly_Returns": quarterly_returns_all_stocks.mean(axis=1),
+                "GDP": gdp_quarterly["GDP"]
+                .reindex(quarterly_returns_all_stocks.index)
+                .ffill(),
+            }
+        ).dropna()
+
+        # Scale features
+        self.features_scaled = self.scaler.fit_transform(self.features)
 
     def gdp_quarterly_clustering_without_pca(self, n_clusters=4):
         # Clustering without PCA
@@ -367,10 +387,7 @@ class MyKMeans:
 
         # Print evaluation metrics for with PCA
         print(f"With PCA - n_clusters={n_clusters}, Silhouette Score: {silhouette_avg_pca:.2f}, Davies-Bouldin Index: {davies_bouldin_pca:.2f}, Calinski-Harabasz Index: {calinski_harabasz_pca:.2f}")
-
-
-    
-
+   
     def economic_indicator_clustering_without_pca(self, indictors):
         # Load GDP and interest rate data
         combined_econ_data_path = './dataset/combined_econ_data.csv'
@@ -453,3 +470,105 @@ class MyKMeans:
 
             # Print evaluation metrics for with PCA
             print(f"With PCA - {index_name}: n_clusters={n_clusters}, Silhouette Score: {silhouette_avg_pca:.2f}, Davies-Bouldin Index: {davies_bouldin_pca:.2f}, Calinski-Harabasz Index: {calinski_harabasz_pca:.2f}")
+
+
+
+    def quarterly_feature_engineering(self, n_clusters=4):
+        # Load GDP data
+        gdp_data_path = "./dataset/stock_balance_sheet.csv"
+        gdp_data = pd.read_csv(gdp_data_path, parse_dates=["DATE"], index_col="DATE")
+        gdp_quarterly = gdp_data.resample("Q").last()
+
+        # Initialize DataFrame for quarterly returns
+        quarterly_returns_all_stocks = pd.DataFrame()
+
+        # Process each stock file for quarterly returns
+        for symbol, filename in self.stock_files.items():
+            stock_data_path = f"./dataset/stock_data/{filename}"
+            stock_data = pd.read_csv(
+                stock_data_path, parse_dates=["Date"], index_col="Date"
+            )
+            daily_returns = stock_data["Close"].pct_change().dropna()
+            quarterly_returns = daily_returns.resample("Q").mean()
+            quarterly_returns_all_stocks[symbol] = quarterly_returns
+
+        # Ensure there's no missing data across stocks
+        quarterly_returns_all_stocks.dropna(inplace=True)
+
+        financial_metrics = [
+            "Revenue Growth (YoY)", "Shares Change", "Gross Margin", "Operating Margin",
+            "Profit Margin", "Free Cash Flow Margin", "EBITDA Margin", "EBIT Margin",
+            "Cash Growth", "Debt Growth"
+        ]
+
+        # Loop through each financial metric for feature engineering and clustering
+        for metric in financial_metrics:
+            # Prepare features
+            self.features = pd.DataFrame({
+                "Mean_Quarterly_Returns": quarterly_returns_all_stocks.mean(axis=1),
+                metric: gdp_quarterly[metric]
+                .reindex(quarterly_returns_all_stocks.index)
+                .ffill(),
+            }).dropna()
+
+            # Scale features
+            self.features_scaled = self.scaler.fit_transform(self.features)
+
+            # Perform clustering without PCA
+            self.quarterly_clustering_without_pca(n_clusters,metric=metric)
+            self.quarterly_clustering_pca(n_clusters,metric=metric)
+
+
+
+    def quarterly_clustering_without_pca(self, n_clusters=4, metric="metric"):
+        # Clustering without PCA
+        kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+        clusters = kmeans.fit_predict(self.features_scaled)
+
+        # Evaluation metrics for without PCA version
+        silhouette_avg = silhouette_score(self.features_scaled, clusters)
+        davies_bouldin = davies_bouldin_score(self.features_scaled, clusters)
+        calinski_harabasz = calinski_harabasz_score(self.features_scaled, clusters)
+
+        # Print evaluation metrics for without PCA
+        print(f"Without PCA - n_clusters={n_clusters}, Silhouette Score: {silhouette_avg:.2f}, Davies-Bouldin Index: {davies_bouldin:.2f}, Calinski-Harabasz Index: {calinski_harabasz:.2f}")
+
+        # Plotting without PCA
+        plt.figure(figsize=(8, 6))
+        sns.scatterplot(x=self.features_scaled[:, 0], y=self.features_scaled[:, 1], hue=clusters, palette='viridis', legend='full', s=100)
+        plt.title(f'Quarterly Stock Returns vs {metric} without PCA (n_clusters={n_clusters})')
+        plt.xlabel('Mean Quarterly Returns')
+        plt.ylabel(metric)
+        plt.legend()
+        plt.show()
+    
+    def quarterly_clustering_pca(self, n_clusters=4, metric="Metric"):
+        # Initialize PCA with 2 components as we want to plot data in a 2D space
+        pca = PCA(n_components=2)
+        
+        # Fit PCA on the scaled features
+        pca.fit(self.features_scaled)
+        
+        # Transform the features using PCA
+        features_pca = pca.transform(self.features_scaled)
+        
+        # Perform clustering on the PCA-transformed features
+        kmeans_pca = KMeans(n_clusters=n_clusters, random_state=42)
+        clusters_pca = kmeans_pca.fit_predict(features_pca)
+        
+        # Plotting with PCA
+        plt.figure(figsize=(8, 6))
+        sns.scatterplot(x=features_pca[:, 0], y=features_pca[:, 1], hue=clusters_pca, palette='viridis', legend='full', s=100)
+        plt.title(f'PCA of Quarterly Stock Returns vs {metric} (n_clusters={n_clusters})')
+        plt.xlabel('Principal Component 1')
+        plt.ylabel('Principal Component 2')
+        plt.legend()
+        plt.show()
+
+        # Evaluation metrics for PCA version
+        silhouette_avg_pca = silhouette_score(features_pca, clusters_pca)
+        davies_bouldin_pca = davies_bouldin_score(features_pca, clusters_pca)
+        calinski_harabasz_pca = calinski_harabasz_score(features_pca, clusters_pca)
+
+        # Print evaluation metrics for with PCA
+        print(f"With PCA - n_clusters={n_clusters}, Silhouette Score: {silhouette_avg_pca:.2f}, Davies-Bouldin Index: {davies_bouldin_pca:.2f}, Calinski-Harabasz Index: {calinski_harabasz_pca:.2f}")
