@@ -249,15 +249,34 @@ The LSTM model parameters are configured as follows: <br>
 
 The following explains the design decisions for the LSTM model: <br>
 
-**input_size: 1** - The input_size parameter specifies the number of features in the input data. In this case, it's set to 1, indicating that there is only one feature, the adjusted close price of the stock. <br>
-**hidden_size: 1** - The hidden_size parameter determines the number of units in the hidden state of the LSTM cell. Setting it to 1 means that each LSTM cell will have only one hidden unit. This choice suggests a relatively simple LSTM architecture, suitable for capturing simple temporal patterns. <br>
-**num_layers: 1** - The num_layers parameter specifies the number of LSTM layers in the model. By setting it to 1, only a single LSTM layer is used. Again, this indicates a simple architecture, which is appropriate for the complexity of the problem or due to computational constraints. <br>
-**batch_first: True** - The batch_first parameter determines whether the input data has the batch size as the first dimension. By setting it to True, the input data is expected to have the shape (batch_size, sequence_length, input_size). <br>
-**num_classes: 1** - The num_classes parameter typically indicates the number of classes in a classification problem. It is set to 1 since the problem is treated as a regression task, where the model predicts continuous values (e.g., stock prices). <br>
-**learning_rate: 0.001** - The learning_rate parameter controls the step size during optimization. A smaller learning rate like 0.001 is often used to ensure stable convergence during training, especially for complex models like LSTMs. <br>
-**optimizer: Adam** - The optimizer parameter specifies the optimization algorithm used during training. Adam is a popular choice due to its adaptive learning rate properties and efficiency in training deep neural networks. <br>
-**loss_function: MSELoss()** - The loss_function parameter defines the loss function used to compute the error between predicted and actual values during training. Mean Squared Error (MSE) loss is commonly used for regression problems, including stock price prediction. <br>
-**num_epochs: 10000** - The num_epochs parameter sets the number of training epochs, i.e., the number of times the entire dataset is passed forward and backward through the model during training. 10,000 epochs is a substantial number of training iterations, however it is being stepped at 100 at a time so the number of training epoch is actually 100. <br>
+**input_size: 1**
+- The input_size parameter specifies the number of features in the input data. In this case, it's set to 1, indicating that there is only one feature, the adjusted close price of the stock.
+
+**hidden_size: 1**
+- The hidden_size parameter determines the number of units in the hidden state of the LSTM cell. Setting it to 1 means that each LSTM cell will have only one hidden unit. This choice suggests a relatively simple LSTM architecture, suitable for capturing simple temporal patterns.
+
+**num_layers: 1**
+- The num_layers parameter specifies the number of LSTM layers in the model. By setting it to 1, only a single LSTM layer is used. Again, this indicates a simple architecture, which is appropriate for the complexity of the problem or due to computational constraints.
+
+**batch_first: True**
+- The batch_first parameter determines whether the input data has the batch size as the first dimension. By setting it to True, the input data is expected to have the shape (batch_size, sequence_length, input_size).
+
+**num_classes: 1**
+- The num_classes parameter typically indicates the number of classes in a classification problem. It is set to 1 since the problem is treated as a regression task, where the model predicts continuous values (e.g., stock prices).
+
+**learning_rate: 0.001**
+- The learning_rate parameter controls the step size during optimization. A smaller learning rate like 0.001 is often used to ensure stable convergence during training, especially for complex models like LSTMs.
+
+**optimizer: Adam**
+- The optimizer parameter specifies the optimization algorithm used during training. Adam is a popular choice due to its adaptive learning rate properties and efficiency in training deep neural networks.
+
+**loss_function: MSELoss()**
+- The loss_function parameter defines the loss function used to compute the error between predicted and actual values during training. Mean Squared Error (MSE) loss is commonly used for regression problems, including stock price prediction.
+
+**num_epochs: 10000**
+- The num_epochs parameter sets the number of training epochs, i.e., the number of times the entire dataset is passed forward and backward through the model during training. 10,000 epochs is a substantial number of training iterations, however it is being stepped at 100 at a time so the number of training epoch is actually 100.
+
+
 
 
 # IV. (Potential) Results and Discussion
