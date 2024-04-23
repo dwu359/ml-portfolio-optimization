@@ -342,7 +342,8 @@ maximization of Sharpe ratio using modern portfolio theory.
 
 ## Next Steps
 
-TODO @p-nayak11: finish this section
+in the future, other supervised learning models could be tested to improve
+portfolio optimization. 
 
 
 ## References
