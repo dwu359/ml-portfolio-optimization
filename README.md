@@ -45,13 +45,13 @@ training data covering the period from 2018 to 2022, and test data for the year
 
 We chose K-means particularly because it is simple and fast, and we did not feel
 the need to obtain probabilities from a soft clustering model like GMM.  We plan
-to use K-means primarily to analyse stock similarity, facilitating the selection
+to use K-means primarily to analyze stock similarity, facilitating the selection
 of stocks across various clusters to enhance portfolio diversification. Some
 challenges that using a clustering algorithm like K-means poses for this,
 however, is determining a proper distance function that accurately identifies
 similarities between stocks.
 
-We chose to implement DBSCAN for our other unsupervised learning method. We chose DBSCAN particularly because it is density-based and we don’t need to specify the number of clusters beforehand.  We plan to use DBSCAN to also analyse stock similarity and compare it to the performance of K-means. Like K-means, we also need to determine a proper distance function, but we also have to choose an optimal epsilon radius and minimum points per cluster.
+We chose to implement DBSCAN for our other unsupervised learning method. We chose DBSCAN particularly because it is density-based and we don’t need to specify the number of clusters beforehand.  We plan to use DBSCAN to also analyze stock similarity and compare it to the performance of K-means. Like K-means, we also need to determine a proper distance function, but we also have to choose an optimal epsilon radius and minimum points per cluster.
 
 We primarily utilized sklearn to train our K-means, PCA and DBSCAN models and for performance metrics for clustering, and we also utilized pandas and numpy for general data manipulation. 
 
@@ -101,12 +101,12 @@ optimizing volatility for Kmeans.
 We explored using K-means to cluster 10 of most popular stock indices. Although
 K-means doesn’t select stocks directly, we altered the algorithm to choose the
 stocks with the minimum volatility for each cluster. We estimated our K-values
-by seeing which datapoints on the graphs were closest to each other. Our K-means
-algorithm for mean returns vs volatility for k=3 selected JPM, NVDA, and VOO,
-and our K-means algorithm with PCA for k=4 selected JPM, NVDA, TSLA, and VOO.
-Since PCA turned out to output quite similar results compared to mean returns vs
-volatility, this confirmed our assumptions that mean returns and volatility were
-good measurements to categorize stocks.
+by seeing which data points on the graphs were closest to each other. Our
+K-means algorithm for mean returns vs volatility for k=3 selected JPM, NVDA, and
+VOO,and our K-means algorithm with PCA for k=4 selected JPM, NVDA, TSLA, and
+VOO. Since PCA turned out to output quite similar results compared to mean
+returns vs volatility, this confirmed our assumptions that mean returns and
+volatility were good measurements to categorize stocks.
 
 We utilized DBSCAN to improve silhouette score using a similar approach to
 K-means. We chose the minimum number of points per cluster to be 3 since when we
@@ -195,7 +195,7 @@ point in the PACF plot indicates the autoregressive term. Conversely, the
 autocorrelation function (ACF) plot aided in determining the value of 'q', with
 the cutoff point in the ACF plot corresponding to the moving average term [6].
 
-For each of the stock, we analysed whether linear differencing would work, or the price data needs to be transformed using logarithm for stable modelling using ARIMA. Then, each stock was investigated for stationarity and seasonal trends. All timeseries showed stationarity after single differencing, passing the ADF test.
+For each of the stock, we analyzed whether linear differencing would work, or the price data needs to be transformed using logarithm for stable modelling using ARIMA. Then, each stock was investigated for stationarity and seasonal trends. All timeseries showed stationarity after single differencing, passing the ADF test.
 
 Additionally, we leveraged grid search methods and the auto_arima function to
 systematically explore various combinations of hyperparameters and select the
@@ -206,7 +206,21 @@ forecasting model for our time series data.
 The table below shows the values of the parameters (p,d,q) for each of the
 stock’s time series
 
-!!insert table!![8]
+| Stock | (p,d,q) | Log Data |
+|-------|---------|----------|
+| AAPL  | (1,1,0) | True     |
+| AMD   | (2,1,2) | True     |
+| AMZN  | (0,1,0) | False    |
+| F     | (0,1,0) | True     |
+| GOOG  | (1,1,1) | False    |
+| INTC  | (0,1,2) | False    |
+| JPM   | (3,1,2) | False    |
+| MSFT  | (0,1,1) | False    |
+| MS    | (2,1,0) | True     |
+| NVDA  | (2,1,0) | True     |
+| TSLA  | (0,1,0) | True     |
+| VOO   | (2,1,2) | False    |
+[6]
 
 Another supervised learning model that we utilized was LSTM. While LSTMs is a Recurrent Neural Network, their ability to retain information over lengthy sequences enables them to capture long-term dependencies, perhaps making them more successful for modelling complicated temporal patterns such as stock price swings than typical RNNs. An investment portfolio comprised of stocks is constructed by leveraging LSTM-based predictions of stock prices and fine-tuned weight optimization. For implementation we use sklearn and PyTorch.
 To ensure compatibility with LSTM, we utilize sklearn's MinMaxScaler to
@@ -307,7 +321,34 @@ induced a slight linearity, rendering it amenable to modelling. This
 transformation has effectively mitigated the non-linear trends present in the
 original data.
 
-**!! INSERT INFORMATION ABOUT LSTM RESULTS HERE !!**
+
+For LSTM based portfolio optimizer, here was the methods involved. <br>
+
+1.	Each time series was standardized using a Min Max Scaler so that there is no explosion of gradients in the Neural Network.
+2.	Then, each timeseries was pre-processed to generate sequences of of length 100, so that the 100 values would be the input features to the LSTM, and the output is the 101st value.
+3.	Each of these training rows are fed into the LSTM framework, and the model is trained to predict the next value in the time series.
+
+The trained models are then used to predict the time series for the next
+sequence of unseen data.For this, the last sequence of training data of length
+100 (last 100 days of 2022) is fed into the LSTM. And the output time series
+(after reverse scaling) is the forecasted time series for the stock.Then, this
+data is used as an input for the MPT optimizer, maximizing the predicted sharpe
+ratio of the portfolio. One of the predictions for the stocks can be seen below. 
+
+<img src=" images/LSTM_images/msft_predictions.png" width = "600">
+
+For each of the methods, here are optimal portfolios selected:
+
+| Model              | AAPL | AMD  | AMZN | F    | GOOG | INTC | JPM  | MSFT | MS   | NVDA | TSLA | VOO  |
+|--------------------|------|------|------|------|------|------|------|------|------|------|------|------|
+| Benchmark (MPT)    | 0    | 0.575| 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.425| 0    |
+| K-Means (non PCA)  | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0    | 0    | 0.33 | 0    | 0.33 |
+| K Means (PCA)      | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0    | 0    | 0.25 | 0.25 | 0.25 |
+| ARIMA + MPT        | 0    | 0    | 0    | 0    | 0.946| 0    | 0    | 0    | 0.0013| 0.041| 0    | 0    |
+|                    |      |      |      |      | 0.041|      |      |      |       |      |      |      |
+| DBSCAN             | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.5  | 0    | 0.5  |
+| NN + LSTM          | 0    | 0    | 0.015| 0.451| 0    | 0.0009| 0.0036| 0.089| 0.043| 0.225| 0    | 0.137|
+
 
 Lastly, we employed Modern Portfolio Theory (MPT) as the benchmark model for
 comparison, which provides a framework for constructing investment portfolios
@@ -336,14 +377,25 @@ maximization of Sharpe ratio using modern portfolio theory.
 | K Means (w/o PCA)  | 0.00243            | 0.0148                   | 2.609        | 0.00165       | 1.351 | 0.0011| 0.782             |
 | K Means (w PCA)    | 0.00262            | 0.0161                   | 2.588        | 0.00160       | 1.514 | 0.0011| 0.859             |
 | ARIMA + MPT        | 0.00223            | 0.0187                   | 1.937        | 0.00141       | 1.478 | 0.0008| 0.688             |
-| LSTM + MPT         | 0.00280            | 0.0168                   | 2.650        | 0.00177       | 1.469 | 0.0013| 0.9396            |
 | DBSCAN             | 0.00274            | 0.0166                   | 2.621        | 0.00176       | 1.444 | 0.0013| 0.9117            |
+| LSTM + MPT         | 0.00280            | 0.0168                   | 2.650        | 0.00177       | 1.469 | 0.0013| 0.9396            |
+
 
 
 ## Next Steps
 
-in the future, other supervised learning models could be tested to improve
-portfolio optimization. 
+While this paper has explored the application of Kmeans, DBSCAN, ARIMA, and LSTM
+models for portfolio optimization, there remains ample room for further
+evaluation and comparison. Future research could delve deeper into the
+performance of these models across different market conditions, asset classes,
+and time horizons. Conducting rigorous backtesting and sensitivity analysis can
+provide more insights into the robustness and stability of these models in
+real-world investment scenarios.
+
+While we attempted to include data beyond historical stock prices with the
+macroeconmic indicators, we were not able to successfully integrate them within
+the overall model. Incorporating such additional data sources could enhance the
+predictive power of the models. By integrating a broader range of information, researchers can potentially uncover new patterns and correlations that contribute to more accurate portfolio optimization strategies.
 
 
 ## References
@@ -355,7 +407,10 @@ portfolio optimization.
 [5] J. Bollen, H. Mao, and X. Zeng, "Twitter mood predicts the stock market,"
 *Journal of Computational Science*, vol. 2, no. 1, pp. 1–8, Mar. 2011. [DOI:
 10.1016/j.jocs.2010.12.007](https://doi.org/10.1016/j.jocs.2010.12.007)<br>
-[6] Hayes, A. (2024, February 23). Autoregressive integrated moving average (ARIMA) prediction model. Investopedia. https://www.investopedia.com/terms/a/autoregressive-integrated-moving-average-arima.asp 
+[6] Hayes, A. (2024, February 23). Autoregressive integrated moving average
+(ARIMA) prediction model. Investopedia.
+https://www.investopedia.com/terms/a/autoregressive-integrated-moving-average-arima.asp 
+[7] Macrotrends LLC. (n.d.). The long term perspective on markets. Macrotrends. https://www.macrotrends.net/ 
 
 
 ## Gantt Chart
@@ -367,16 +422,16 @@ portfolio optimization.
 
 | Name     | Proposal Contributions                                     |
 |----------|-------------------------------------------------------------|
-| Sai      | - Combining stock dataset and EDA        |
-|          | - Data pre-processing and visualizations for ARIMA.       |
-| Jungyoun Kwak  | - Collect economic indicators data set and pre-processing data        |
-|          | - Implementing code and visualizations for Kmeans.         |
+| Sai      | - Implemented LSTM        |
+|          | - Report and Video recording        |
+| Jungyoun Kwak  | - Collected balance data and Implemented DBSCAN        |
+|          | - Report and Video recording         |
 | Prabhanjan Nayak  | - Finalized models, repository structure and description, and report.            |
-|          | - Team management for all midterm deliverables.     |
-| Kaushik Arcot  | - Compiled code for modelling ARIMA for all stocks , and code for Benchmark Model using Modern Portfolio Theory|
-|          | - Completed code and compiled metrics of analyzing portfolio allocations. |
-| Daniel Wu  | - PCA feature reduction for Kmeans |
-|          | - Wrote the methods and results for Kmeans    |
+|          | - Team management for all final deliverables.     |
+| Kaushik Arcot  | - Compiled code for modelling LSTM for all stocks|
+|          | - Completed code and compiled metrics of LSTM and analyzing portfolio allocations for results and discussion section. |
+| Daniel Wu  | - PCA feature reduction for DBSCAN |
+|          | - Wrote the methods for DBSCAN    |
 
 
 
